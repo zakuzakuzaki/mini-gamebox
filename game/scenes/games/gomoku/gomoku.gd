@@ -7,6 +7,7 @@ var state = State.new()
 var board: Control
 var status: Label
 var undo_button: Button
+var panel_scroll: ScrollContainer
 var panel: VBoxContainer
 var hint_buttons: Dictionary = {}
 var hint_label: Label
@@ -16,16 +17,16 @@ func _layout() -> void:
 	if board == null: return
 	var landscape = size.x > size.y
 	for child in panel.get_children():
-		if child is Button: child.custom_minimum_size.y = 64 if landscape else 48
+		if child is Button: child.custom_minimum_size.y = 128 if landscape else 96
 	var panel_height = panel.get_combined_minimum_size().y
 	var side = minf(size.y - 8, size.x - 260) if landscape else minf(size.x - 8, size.y - panel_height - 20)
 	side = maxf(100, side)
 	board.position = Vector2(4, (size.y - side) / 2) if landscape else Vector2((size.x - side) / 2, 4)
 	board.size = Vector2.ONE * side
-	panel.position = Vector2(side + 16, 12) if landscape else Vector2(8, side + 12)
-	panel.size = Vector2(size.x - side - 24, size.y - 24) if landscape else Vector2(size.x - 16, size.y - side - 20)
+	panel_scroll.position = Vector2(side + 16, 12) if landscape else Vector2(8, side + 12)
+	panel_scroll.size = Vector2(size.x - side - 24, size.y - 24) if landscape else Vector2(size.x - 16, size.y - side - 20)
 	for child in panel.get_children():
-		if child is Button: child.custom_minimum_size.y = 64 if landscape else 48
+		if child is Button: child.custom_minimum_size.y = 128 if landscape else 96
 
 func _toggle_hint(enabled: bool, player: int) -> void:
 	hint_enabled[player] = enabled
@@ -44,9 +45,13 @@ func _ready() -> void:
 	board.state = state
 	board.played.connect(_place)
 	add_child(board)
+	panel_scroll = ScrollContainer.new()
+	panel_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	add_child(panel_scroll)
 	panel = VBoxContainer.new()
+	panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	panel.add_theme_constant_override("separation", 8)
-	add_child(panel)
+	panel_scroll.add_child(panel)
 	panel.add_child(UI.label("ごもくならべ", 26))
 	status = UI.label("", 30)
 	panel.add_child(status)

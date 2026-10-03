@@ -1,14 +1,16 @@
 # mini-gamebox
 
-親子で遊ぶ Godot 製ミニゲーム集。初期実装は、ゲームセレクトと15×15の2人用五目並べです。
+親子で遊ぶ Godot 製ミニゲーム集。15×15の五目並べと3×3のまるばつゲームを、2人で遊べます。
 
 ## 起動
 
 Godot **4.6.1 stable** で `game/project.godot` を開いて実行します。
-黒が先手で、交点をタップして交互に置きます。縦・横・斜めに5個以上並べば勝ち。禁じ手はありません。
+五目並べは黒が先手で、交点をタップして交互に置きます。縦・横・斜めに5個以上並べば勝ち。禁じ手はありません。
 勝った列を緑色で表示し、勝利後も「ひとつ もどる」で直前の手を取り消して続行できます。
 「もういちど」で初期化、「ゲームを えらぶ」で選択画面へ戻ります。対局の保存は行いません。
 タップ・マウスに対応し、盤面をフォーカスすると矢印キーと Enter / Space でも操作できます。
+
+まるばつゲームは○が先手で、○と×を交互に置きます。縦・横・斜めに3つ並べば勝ち、9マス埋まっても揃わなければ引き分けです。まる・ばつは白いマスに大きな太線で表示します。勝ったマスは緑の枠で示し、揃った列に線と火花を表示します。せめ・まもりのヒントは、まる・ばつごとにオン・オフを切り替えられます。「ひとつ もどる」「もういちど」にも対応し、マスはタップ・クリック、キーボードのフォーカス移動と Enter / Space で選べます。
 
 ## Web ビルド
 
@@ -37,7 +39,7 @@ GodotがPATHにない場合は `GODOT_BIN=/path/to/godot pnpm build:web` のよ�
 
 - `.github/workflows/build-web.yml`: `main`へのpush（PRのマージを含む）または手動実行でWebビルドとサイズ検査を行い、成功後にPagesの`main`へ公開します。`README.md`・`docs/**`のみの変更では起動しません。
 - 手動で`main`以外のブランチを選んだ場合はビルド・サイズ検査のみを実行し、公開しません。
-- `.github/workflows/test.yml`: **Actions → Run Tests → Run workflow** で五目並べとWasmローダーをテストします。参考と同じくテストは自動デプロイに含めず、push・PRでは起動しません。
+- `.github/workflows/test.yml`: **Actions → Run Tests → Run workflow** で五目並べ・まるばつゲームとWasmローダーをテストします。参考と同じくテストは自動デプロイに含めず、push・PRでは起動しません。
 - PRイベントではどちらのワークフローも起動しません。
 
 ビルド環境は `barichello/godot-ci:4.6.1`、Node.js 24、pnpm 10.28.1。Wranglerは参考と同じ4.26.0を使用します。
@@ -75,6 +77,7 @@ pnpm dlx wrangler@4.26.0 pages deploy dist/web --project-name mini-gamebox --bra
 
 - `game/scenes/game_select/`: ゲーム選択
 - `game/scenes/games/gomoku/`: 盤面描画、画面、独立した対局ロジック
+- `game/scenes/games/tic_tac_toe/`: まるばつゲームの画面・対局ロジック
 - `game/scripts/game_catalog.gd`: ゲーム一覧。新しいゲームSceneのパスと表示名を追加
 - `game/ui/`: 共通テーマ・UI部品
 - `game/tests/`: 勝敗、Undo、引き分け、リセットのテスト
