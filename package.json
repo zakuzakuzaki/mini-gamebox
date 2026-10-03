@@ -1,0 +1,12 @@
+{
+  "name": "mini-gamebox",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@10.28.1",
+  "scripts": {
+    "test": "bash scripts/test-game.sh && node scripts/test-wasm-loader.mjs",
+    "build:web": "bash scripts/build-web.sh",
+    "check:web-size": "node scripts/check-pages-size.mjs dist/web",
+    "serve:web": "python3 -m http.server 8788 --directory dist/web"
+  }
+}

@@ -1,0 +1,6 @@
+.DS_Store
+game/.godot/
+dist/
+node_modules/
+.wrangler/
+tmp/

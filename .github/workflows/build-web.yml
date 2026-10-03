@@ -1,0 +1,75 @@
+name: Build Web
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - "README.md"
+      - "docs/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: web-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    container: barichello/godot-ci:4.6.1
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.28.1
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Install Godot font runtime dependency
+        run: apt-get update && apt-get install -y --no-install-recommends libfontconfig1
+
+      - name: Make Godot export templates available
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          template_version="4.6.1.stable"
+          template_source="/root/.local/share/godot/export_templates/$template_version"
+          template_target="$HOME/.local/share/godot/export_templates/$template_version"
+
+          test -f "$template_source/web_nothreads_release.zip"
+          test -f "$template_source/web_nothreads_debug.zip"
+
+          if [ "$template_source" != "$template_target" ]; then
+            mkdir -p "$(dirname "$template_target")"
+            rm -rf "$template_target"
+            ln -s "$template_source" "$template_target"
+          fi
+
+      - name: Import game resources
+        run: godot --headless --path game --editor --import --quit
+
+      - name: Build Web
+        run: GODOT_BIN=godot pnpm build:web
+
+      - name: Enforce Cloudflare Pages file size limit
+        run: pnpm check:web-size
+
+      - name: Deploy to Cloudflare Pages
+        if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          wranglerVersion: "4.26.0"
+          command: pages deploy dist/web --project-name "${{ vars.CLOUDFLARE_PAGES_PROJECT }}" --branch main
