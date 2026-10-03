@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -euo pipefail
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+GODOT_BIN="${GODOT_BIN:-godot}"
+log="$(mktemp)"
+trap 'rm -f "$log"' EXIT
+"$GODOT_BIN" --headless --path "$ROOT_DIR/game" --script res://tests/test_gomoku.gd 2>&1 | tee "$log"
+if grep -Eq '(SCRIPT ERROR|ERROR):' "$log"; then exit 1; fi
+grep -q 'Gomoku checks passed' "$log"
