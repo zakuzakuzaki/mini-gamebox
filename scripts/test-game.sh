@@ -10,3 +10,6 @@ grep -q 'Gomoku checks passed' "$log"
 "$GODOT_BIN" --headless --path "$ROOT_DIR/game" --script res://tests/test_tic_tac_toe.gd 2>&1 | tee "$log"
 if grep -Eq '(SCRIPT ERROR|ERROR):' "$log"; then exit 1; fi
 grep -q 'Tic tac toe checks passed' "$log"
+"$GODOT_BIN" --headless --path "$ROOT_DIR/game" --script res://tests/test_minesweeper.gd 2>&1 | tee "$log"
+if grep -Eq '(SCRIPT ERROR|ERROR):' "$log"; then exit 1; fi
+grep -q 'Minesweeper checks passed' "$log"
