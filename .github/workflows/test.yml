@@ -32,5 +32,8 @@ jobs:
       - name: Test WASM loader
         run: node scripts/test-wasm-loader.mjs
 
-      - name: Test Gomoku
+      - name: Test browser speech and Wikipedia integration
+        run: node scripts/test-kotoba-browser.mjs
+
+      - name: Test games
         run: bash scripts/test-game.sh

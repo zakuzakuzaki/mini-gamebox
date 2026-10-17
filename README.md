@@ -1,6 +1,7 @@
 # mini-gamebox
 
 親子で遊ぶ Godot 製ミニゲーム集。15×15の五目並べと3×3のまるばつゲームを2人で、子ども向けマインスイーパーを1人や親子で遊べます。
+「ことばタッチ」では、ひらがな・カタカナをタッチして言葉を作れます。ブラウザでは文字・単語を読み上げ、決定時にWikipediaで画像を検索します。画像はWikipediaから取得し、拡大モーダルから記事を開けます。[仕様](docs/kotoba-touch.md)。
 
 ## 起動
 
@@ -43,7 +44,7 @@ GodotがPATHにない場合は `GODOT_BIN=/path/to/godot pnpm build:web` のよ�
 
 - `.github/workflows/build-web.yml`: `main`へのpush（PRのマージを含む）または手動実行でWebビルドとサイズ検査を行い、成功後にPagesの`main`へ公開します。`README.md`・`docs/**`のみの変更では起動しません。
 - 手動で`main`以外のブランチを選んだ場合はビルド・サイズ検査のみを実行し、公開しません。
-- `.github/workflows/test.yml`: **Actions → Run Tests → Run workflow** で五目並べ・まるばつゲームとWasmローダーをテストします。参考と同じくテストは自動デプロイに含めず、push・PRでは起動しません。
+- `.github/workflows/test.yml`: **Actions → Run Tests → Run workflow** で全4ゲーム、ことばタッチのブラウザ連携、Wasmローダーをテストします。参考と同じくテストは自動デプロイに含めず、push・PRでは起動しません。
 - PRイベントではどちらのワークフローも起動しません。
 
 ビルド環境は `barichello/godot-ci:4.6.1`、Node.js 24、pnpm 10.28.1。Wranglerは参考と同じ4.26.0を使用します。
@@ -83,6 +84,7 @@ pnpm dlx wrangler@4.26.0 pages deploy dist/web --project-name mini-gamebox --bra
 - `game/scenes/games/gomoku/`: 盤面描画、画面、独立した対局ロジック
 - `game/scenes/games/tic_tac_toe/`: まるばつゲームの画面・対局ロジック
 - `game/scenes/games/minesweeper/`: 子ども向けマインスイーパーの画面・盤面生成・取り消し・ヒント
+- `game/scenes/games/kotoba_touch/`: ことばタッチの共通文字入力、画面、ブラウザ音声・Wikipedia連携
 - `game/scripts/game_catalog.gd`: ゲーム一覧。新しいゲームSceneのパスと表示名を追加
 - `game/ui/`: 共通テーマ・UI部品
 - `game/tests/`: 勝敗、Undo、引き分け、リセットのテスト
