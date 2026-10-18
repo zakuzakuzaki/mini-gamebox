@@ -16,3 +16,9 @@ grep -q 'Minesweeper checks passed' "$log"
 "$GODOT_BIN" --headless --path "$ROOT_DIR/game" --script res://tests/test_kotoba_touch.gd 2>&1 | tee "$log"
 if grep -Eq '(SCRIPT ERROR|ERROR):' "$log"; then exit 1; fi
 grep -q 'Kotoba touch checks passed' "$log"
+"$GODOT_BIN" --headless --path "$ROOT_DIR/game" --script res://tests/test_debug_popup.gd 2>&1 | tee "$log"
+if grep -Eq '(SCRIPT ERROR|ERROR):' "$log"; then exit 1; fi
+grep -q 'Debug popup checks passed' "$log"
+"$GODOT_BIN" --headless --path "$ROOT_DIR/game" --script res://tests/test_wikipedia_images.gd 2>&1 | tee "$log"
+if grep -Eq '(SCRIPT ERROR|ERROR):' "$log"; then exit 1; fi
+grep -q 'Wikipedia image checks passed' "$log"

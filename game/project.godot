@@ -2,6 +2,10 @@ config_version=5
 [application]
 config/name="mini-gamebox"
 run/main_scene="res://scenes/game_select/game_select.tscn"
+[autoload]
+DebugPopup="*res://ui/debug_popup.gd"
+[audio]
+general/text_to_speech=true
 [display]
 window/size/viewport_width=480
 window/size/viewport_height=760
