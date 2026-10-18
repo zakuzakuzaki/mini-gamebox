@@ -3,6 +3,7 @@ extends Control
 const UI = preload("res://ui/ui.gd")
 const Kana = preload("res://scenes/games/kotoba_touch/kana.gd")
 const ImagePreview = preload("res://scenes/games/kotoba_touch/image_preview.gd")
+const WikipediaImages = preload("res://scenes/games/kotoba_touch/wikipedia_images.gd")
 const MAX_INPUT_LENGTH = 20
 var input_text = ""
 var confirmed = ""
@@ -18,6 +19,7 @@ var input_limit_label: Label
 var result_word: Label
 var message: Label
 var picture: TextureRect
+var candidate_list: VBoxContainer
 var gallery: HBoxContainer
 var image_modal: Control
 var modal_picture: TextureRect
@@ -39,9 +41,12 @@ var modes: Array[Button] = []
 var bridge: JavaScriptObject
 var browser_input_callback: JavaScriptObject
 var animation: Tween
+var photos = WikipediaImages.new()
 
 func _ready() -> void:
 	UI.setup(self)
+	add_child(photos)
+	photos.result_ready.connect(_show_result)
 	# Browser APIs stay isolated from native Godot and the other games.
 	if OS.has_feature("web"):
 		JavaScriptBridge.eval(FileAccess.get_file_as_string("res://scenes/games/kotoba_touch/browser.js"), true)
@@ -71,7 +76,7 @@ func _ready() -> void:
 	input_limit_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 	input_limit_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	input_limit_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	layout.add_child(input_limit_label)
+	content_panel.add_child(input_limit_label)
 	keyboard_dock = HBoxContainer.new()
 	keyboard_dock.add_theme_constant_override("separation", 10)
 	layout.add_child(keyboard_dock)
@@ -103,6 +108,7 @@ func _ready() -> void:
 	clear_button = _button("ぜんぶけす", _clear)
 	confirm_button = _button("けってい", _confirm)
 	result_box = HBoxContainer.new()
+	result_box.size_flags_vertical = SIZE_EXPAND_FILL
 	column.add_child(result_box)
 	image_box = VBoxContainer.new()
 	image_box.size_flags_horizontal = SIZE_EXPAND_FILL
@@ -117,12 +123,19 @@ func _ready() -> void:
 	message.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	details.add_child(message)
 	var gallery_scroll = ScrollContainer.new()
-	gallery_scroll.custom_minimum_size.y = 230
+	gallery_scroll.size_flags_vertical = SIZE_EXPAND_FILL
 	gallery_scroll.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
 	image_box.add_child(gallery_scroll)
+	candidate_list = VBoxContainer.new()
+	candidate_list.size_flags_vertical = SIZE_EXPAND_FILL
+	candidate_list.alignment = BoxContainer.ALIGNMENT_CENTER
+	candidate_list.add_theme_constant_override("separation", 12)
+	image_box.add_child(candidate_list)
+	candidate_list.hide()
 	image_box.size_flags_stretch_ratio = 3.0
 	gallery = HBoxContainer.new()
 	gallery.size_flags_horizontal = SIZE_EXPAND_FILL
+	gallery.size_flags_vertical = SIZE_EXPAND_FILL
 	gallery.add_theme_constant_override("separation", 12)
 	gallery_scroll.add_child(gallery)
 	var result_actions = VBoxContainer.new()
@@ -170,10 +183,6 @@ func _ready() -> void:
 		modifiers.add_child(_button(entry[0], _modify.bind(entry[1])))
 	long_mark_button = _button("ー", _append.bind("ー"))
 	modifiers.add_child(long_mark_button)
-	if not bridge:
-		var hint = UI.label("こえと しゃしんは ブラウザで あそんでね", 18)
-		hint.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-		column.add_child(hint)
 	_build_image_modal()
 	_set_mode(false)
 	_reset_result()
@@ -215,11 +224,17 @@ func _fit_upper_content() -> void:
 	# Measure at the available width first, so a previous scale never feeds back
 	# into the next layout. Horizontal scrolling remains inside the word/gallery.
 	content_column.size.x = content_panel.size.x
+	input_limit_label.size.x = content_panel.size.x
+	var notice_height = input_limit_label.get_combined_minimum_size().y
+	input_limit_label.position.y = maxf(0.0, content_panel.size.y - notice_height)
+	var available_height = content_panel.size.y
+	if input_text.length() >= MAX_INPUT_LENGTH:
+		available_height = maxf(1.0, available_height - notice_height - 10.0)
 	var minimum = content_column.get_combined_minimum_size()
-	var factor = minf(1.0, content_panel.size.y / maxf(minimum.y, 1.0))
+	var factor = minf(1.0, available_height / maxf(minimum.y, 1.0))
 	factor = minf(factor, content_panel.size.x / maxf(minimum.x, 1.0))
 	content_column.scale = Vector2.ONE * factor
-	content_column.size = Vector2(content_panel.size.x / factor, minimum.y)
+	content_column.size = Vector2(content_panel.size.x, available_height) / factor
 
 func _set_mode(mode: bool) -> void:
 	hiragana_mode = mode
@@ -232,7 +247,26 @@ func _speak(text: String) -> void:
 	if text.is_empty(): return
 	spoken.append(text)
 	if spoken.size() > 32: spoken.pop_front()
-	if bridge: bridge.speak(text)
+	# Headless tests have no audio backend.
+	if DisplayServer.get_name() == "headless": return
+	if not DisplayServer.has_feature(DisplayServer.FEATURE_TEXT_TO_SPEECH):
+		_tts_error("unsupported", text)
+		return
+	# Re-query on each interaction: Web voices may load after scene startup.
+	var voices = DisplayServer.tts_get_voices_for_language("ja")
+	if voices.is_empty():
+		DisplayServer.tts_stop()
+		_tts_error("japanese_voice_unavailable", text)
+		return
+	DisplayServer.tts_speak(text, voices[0], 100, 1.0, 0.85, 0, true)
+
+func _tts_error(code: String, text: String) -> void:
+	get_node("/root/DebugPopup").show_error("TTS", "読み上げに失敗しました",
+		JSON.stringify({"code": code, "text": text, "lang": "ja", "platform": OS.get_name()}))
+
+func _stop_speech() -> void:
+	if DisplayServer.get_name() != "headless" and DisplayServer.has_feature(DisplayServer.FEATURE_TEXT_TO_SPEECH):
+		DisplayServer.tts_stop()
 
 func _flush_browser_input(_arguments: Array) -> void:
 	Input.flush_buffered_events()
@@ -257,17 +291,19 @@ func _erase() -> void:
 	_refresh()
 
 func _clear() -> void:
+	_stop_speech()
 	input_text = ""
 	confirmed = ""
-	if bridge: bridge.cancel()
+	photos.cancel()
 	_reset_result()
 	_refresh()
 
 func _refresh() -> void:
 	input_label.text = input_text if not input_text.is_empty() else "もじを タッチしてね"
 	var at_limit = input_text.length() >= MAX_INPUT_LENGTH
-	# Reserve the message's space even when empty so the keys never move.
+	# The notice shares the upper area; the bottom-anchored keyboard never moves.
 	input_limit_label.modulate.a = 1.0 if at_limit else 0.0
+	_fit_upper_content()
 	for key in keys:
 		key.disabled = at_limit or key.get_meta("kana") == " "
 	long_mark_button.disabled = at_limit
@@ -285,6 +321,11 @@ func _reset_result() -> void:
 	for preview in gallery.get_children():
 		gallery.remove_child(preview)
 		preview.queue_free()
+	for candidate in candidate_list.get_children():
+		candidate_list.remove_child(candidate)
+		candidate.queue_free()
+	candidate_list.hide()
+	gallery.get_parent().show()
 	picture = null
 	image_box.hide()
 	article_url = ""
@@ -299,15 +340,8 @@ func _confirm() -> void:
 	_reset_result()
 	result_box.show()
 	result_word.text = confirmed
-	message.text = "さがしているよ…" if bridge else "しゃしんは ブラウザで みてね"
-	if bridge: bridge.search(confirmed)
-
-func _process(_delta: float) -> void:
-	if not bridge: return
-	var payload: String = bridge.take()
-	if payload.is_empty(): return
-	var result = JSON.parse_string(payload)
-	if result is Dictionary: _show_result(result)
+	message.text = "さがしているよ…"
+	photos.search(confirmed)
 
 func _show_result(result: Dictionary) -> void:
 	if result.get("word", "") != confirmed or confirmed.is_empty(): return
@@ -325,31 +359,66 @@ func _show_result(result: Dictionary) -> void:
 					elif bytes.slice(8, 12).get_string_from_ascii() == "WEBP":
 						error = image.load_webp_from_buffer(bytes)
 				if error != OK: continue
+				var card = VBoxContainer.new()
+				card.custom_minimum_size.x = 240
+				card.size_flags_horizontal = SIZE_EXPAND_FILL
+				card.add_theme_constant_override("separation", 6)
+				gallery.add_child(card)
+				var title: String = item.get("title", confirmed)
 				var preview = ImagePreview.new()
 				preview.custom_minimum_size = Vector2(240, 210)
 				preview.size_flags_horizontal = SIZE_EXPAND_FILL
+				preview.size_flags_vertical = SIZE_EXPAND_FILL
 				preview.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 				preview.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 				preview.texture = ImageTexture.create_from_image(image)
 				preview.set_meta("article_url", item.get("article_url", ""))
+				preview.set_meta("article_title", title)
 				preview.mouse_filter = Control.MOUSE_FILTER_STOP
 				preview.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 				preview.gui_input.connect(_picture_input.bind(preview))
-				gallery.add_child(preview)
+				card.add_child(preview)
+				var caption = UI.label(title, 20)
+				caption.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+				caption.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+				caption.max_lines_visible = 2
+				caption.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+				caption.tooltip_text = title
+				card.add_child(caption)
 				if picture == null: picture = preview
 			if picture == null:
-				message.text = "しゃしんが みつからなかったよ"
+				_show_text_candidates(result.get("candidates", result.get("images", [result])))
 				return
 			image_box.show()
 			gallery.modulate.a = 0.0
 			animation = create_tween()
 			animation.tween_property(gallery, "modulate:a", 1.0, 0.25)
 			message.text = ""
+		"text": _show_text_candidates(result.get("candidates", []))
 		"network": message.text = "つながらなかったよ。もういちど ためしてね"
 		"wait": message.text = "すこし まってから けっていしてね"
 		"ambiguous": message.text = "どの ことばかな？ ちがう ことばで ためしてね"
 		"not_found": message.text = "ことばが みつからなかったよ"
 		_: message.text = "しゃしんが みつからなかったよ"
+
+func _show_text_candidates(candidates: Array) -> void:
+	var seen: Dictionary = {}
+	for candidate in candidates:
+		var title: String = candidate.get("title", "")
+		if title.is_empty() or seen.has(title): continue
+		seen[title] = true
+		var label = UI.label(title, 28)
+		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		candidate_list.add_child(label)
+		if seen.size() == 3: break
+	if seen.is_empty():
+		message.text = "しゃしんが みつからなかったよ"
+		return
+	gallery.get_parent().hide()
+	candidate_list.show()
+	image_box.show()
+	message.text = ""
 
 func _open_link(url: String) -> void:
 	if url.begins_with("https://commons.wikimedia.org/") or url.begins_with("https://ja.wikipedia.org/") or url.begins_with("https://creativecommons.org/"):
@@ -359,9 +428,10 @@ func _back() -> void:
 	get_tree().change_scene_to_file.call_deferred("res://scenes/game_select/game_select.tscn")
 
 func _exit_tree() -> void:
+	_stop_speech()
 	if bridge:
 		bridge.setInputCallback(null)
-		bridge.cancel()
+	photos.cancel()
 
 func _build_image_modal() -> void:
 	image_modal = Control.new()
@@ -388,11 +458,12 @@ func _build_image_modal() -> void:
 	column.add_theme_constant_override("separation", 12)
 	panel.add_child(column)
 	var top = HBoxContainer.new()
+	top.alignment = BoxContainer.ALIGNMENT_END
 	column.add_child(top)
-	modal_title = UI.label("", 30)
+	modal_title = UI.label("", 24)
+	modal_title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	modal_title.size_flags_horizontal = SIZE_EXPAND_FILL
-	modal_title.clip_text = true
-	top.add_child(modal_title)
+	modal_title.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	modal_close = _button("とじる", _close_image_modal)
 	modal_close.size_flags_horizontal = SIZE_SHRINK_END
 	top.add_child(modal_close)
@@ -404,6 +475,7 @@ func _build_image_modal() -> void:
 	modal_picture.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	modal_picture.size_flags_vertical = SIZE_EXPAND_FILL
 	column.add_child(modal_picture)
+	column.add_child(modal_title)
 	var footer = HBoxContainer.new()
 	footer.alignment = BoxContainer.ALIGNMENT_END
 	column.add_child(footer)
@@ -429,7 +501,7 @@ func _open_image_modal(preview: TextureRect = null) -> void:
 	article_url = preview.get_meta("article_url", "")
 	previous_focus = get_viewport().gui_get_focus_owner()
 	modal_picture.texture = preview.texture
-	modal_title.text = confirmed
+	modal_title.text = preview.get_meta("article_title", confirmed)
 	modal_wiki.disabled = article_url.is_empty()
 	image_modal.show()
 	modal_close.grab_focus()

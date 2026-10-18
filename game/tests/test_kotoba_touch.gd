@@ -3,6 +3,10 @@ extends SceneTree
 const Kana = preload("res://scenes/games/kotoba_touch/kana.gd")
 var failures = 0
 
+class OfflinePhotos extends "res://scenes/games/kotoba_touch/wikipedia_images.gd":
+	func search(_word: String) -> void:
+		pass
+
 func check(value: bool, description: String) -> void:
 	if not value:
 		push_error(description)
@@ -41,6 +45,8 @@ func _check_image_hit_area() -> void:
 
 func _check_scene() -> void:
 	var scene = load("res://scenes/games/kotoba_touch/kotoba_touch.tscn").instantiate()
+	scene.photos.free()
+	scene.photos = OfflinePhotos.new()
 	root.add_child(scene)
 	await process_frame
 	check(scene.confirm_button.disabled and not scene.result_box.visible, "Empty initial state")
@@ -93,13 +99,29 @@ func _check_scene() -> void:
 	scene._confirm()
 	scene._append("ネ")
 	scene._show_result({"word": "カキ", "status": "image", "images": [
-		{"image": encoded, "article_url": "https://ja.wikipedia.org/wiki/柿"},
-		{"image": encoded, "article_url": "https://ja.wikipedia.org/wiki/牡蠣"}]})
+		{"image": encoded, "title": "柿", "article_url": "https://ja.wikipedia.org/wiki/柿"},
+		{"image": encoded, "title": "牡蠣", "article_url": "https://ja.wikipedia.org/wiki/牡蠣"}]})
 	check(scene.gallery.get_child_count() == 2, "Show multiple candidates while typing next word")
-	scene._open_image_modal(scene.gallery.get_child(1))
+	scene._open_image_modal(scene.gallery.get_child(1).get_child(0))
 	check(scene.article_url.ends_with("牡蠣"), "Modal link belongs to tapped image")
+	check(scene.gallery.get_child(0).get_child(1).text == "柿" and scene.gallery.get_child(1).get_child(1).text == "牡蠣", "Each caption uses its article title")
+	check(scene.modal_title.text == "牡蠣", "Modal title belongs to tapped image")
 	check(scene.input_text == "ネ" and scene.confirmed == "カキ", "Search result preserves next input")
 	scene._close_image_modal()
+	scene._clear()
+	scene._append("カキ")
+	scene._confirm()
+	scene._show_result({"word": "カキ", "status": "text", "candidates": [
+		{"title": "柿"}, {"title": "柿"}, {"title": "牡蠣"}, {"title": "夏季"}, {"title": "花器"}]})
+	check(scene.candidate_list.visible and scene.image_box.visible and scene.picture == null, "Text-only candidates are visible without images")
+	check(scene.candidate_list.get_children().map(func(label): return label.text) == ["柿", "牡蠣", "夏季"], "Display at most three distinct titles")
+	check(scene.message.text.is_empty(), "Existing candidates are not reported as missing")
+	scene._clear()
+	check(scene.candidate_list.get_child_count() == 0 and not scene.candidate_list.visible, "Clear removes text-only candidates")
+	scene._append("カキ")
+	scene._confirm()
+	scene._show_result({"word": "カキ", "status": "image", "images": [{"image": "AQID", "title": "柿"}]})
+	check(scene.candidate_list.visible and scene.candidate_list.get_child(0).text == "柿", "Undecodable image falls back to its title")
 	scene._clear()
 	for i in 20: scene._append("ハ")
 	check(scene.keys.all(func(key): return key.disabled) and scene.long_mark_button.disabled, "Adding keys disabled at limit")

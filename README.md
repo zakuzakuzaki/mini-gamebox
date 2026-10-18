@@ -1,7 +1,7 @@
 # mini-gamebox
 
 親子で遊ぶ Godot 製ミニゲーム集。15×15の五目並べと3×3のまるばつゲームを2人で、子ども向けマインスイーパーを1人や親子で遊べます。
-「ことばタッチ」では、ひらがな・カタカナをタッチして言葉を作れます。ブラウザでは文字・単語を読み上げ、決定時にWikipediaで画像を検索します。画像はWikipediaから取得し、拡大モーダルから記事を開けます。[仕様](docs/kotoba-touch.md)。
+「ことばタッチ」では、ひらがな・カタカナをタッチして言葉を作れます。文字・単語はGodot標準TTSで読み上げます（Web・ネイティブ対応、日本語音声が必要）。画像検索もWeb・ネイティブ共通で、決定時にWikipediaから取得します。画像はWikipediaから取得し、拡大モーダルから記事を開けます。[仕様](docs/kotoba-touch.md)。
 
 ## 起動
 
@@ -84,9 +84,9 @@ pnpm dlx wrangler@4.26.0 pages deploy dist/web --project-name mini-gamebox --bra
 - `game/scenes/games/gomoku/`: 盤面描画、画面、独立した対局ロジック
 - `game/scenes/games/tic_tac_toe/`: まるばつゲームの画面・対局ロジック
 - `game/scenes/games/minesweeper/`: 子ども向けマインスイーパーの画面・盤面生成・取り消し・ヒント
-- `game/scenes/games/kotoba_touch/`: ことばタッチの共通文字入力、画面、ブラウザ音声・Wikipedia連携
+- `game/scenes/games/kotoba_touch/`: ことばタッチの共通文字入力、画面、標準TTS・Wikipedia連携
 - `game/scripts/game_catalog.gd`: ゲーム一覧。新しいゲームSceneのパスと表示名を追加
-- `game/ui/`: 共通テーマ・UI部品
+- `game/ui/`: 共通テーマ・UI部品。デバッグ通知は全ゲーム共通の `DebugPopup` ポップアップを使用（[呼び出し方](docs/kotoba-touch.md#ttsのエラー表示)）。
 - `game/tests/`: 勝敗、Undo、引き分け、リセットのテスト
 - `scripts/`: Webビルド・分割ローダー・サイズ検証
 

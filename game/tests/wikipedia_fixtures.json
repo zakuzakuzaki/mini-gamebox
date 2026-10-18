@@ -1,0 +1,2282 @@
+[
+  {
+    "word": "ネコ",
+    "responses": [
+      {
+        "url": "https://ja.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*&maxlag=5&titles=%E3%83%8D%E3%82%B3&redirects=1&prop=pageimages%7Cpageprops%7Ccategories&cllimit=max&clshow=%21hidden&piprop=name%7Cthumbnail&pilicense=any&pilimit=max&pithumbsize=400",
+        "json": {
+          "query": {
+            "pages": [
+              {
+                "pageid": 1215264,
+                "ns": 0,
+                "title": "ネコ",
+                "pageimage": "Cat_poster_1.jpg",
+                "thumbnail": null
+              }
+            ]
+          }
+        }
+      },
+      {
+        "url": "https://ja.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*&maxlag=5&generator=search&gsrsearch=%22%E3%81%AD%E3%81%93%22&gsrnamespace=0&gsrlimit=50&gsrprop=&prop=pageimages%7Cpageprops%7Ccategories&cllimit=max&clshow=%21hidden&piprop=name%7Cthumbnail&pilicense=any&pilimit=max&pithumbsize=400",
+        "json": {
+          "query": {
+            "pages": [
+              {
+                "pageid": 1215264,
+                "ns": 0,
+                "title": "ネコ",
+                "pageimage": "Cat_poster_1.jpg",
+                "thumbnail": null
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "expected": {
+      "status": "text",
+      "candidates": [
+        {
+          "title": "ネコ",
+          "article_url": "https://ja.wikipedia.org/wiki/%E3%83%8D%E3%82%B3"
+        }
+      ],
+      "partial": false,
+      "word": "ネコ"
+    }
+  },
+  {
+    "word": "ねコ",
+    "responses": [
+      {
+        "url": "https://ja.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*&maxlag=5&titles=%E3%81%AD%E3%82%B3&redirects=1&prop=pageimages%7Cpageprops%7Ccategories&cllimit=max&clshow=%21hidden&piprop=name%7Cthumbnail&pilicense=any&pilimit=max&pithumbsize=400",
+        "json": {
+          "query": {
+            "pages": [
+              {
+                "missing": true
+              }
+            ]
+          }
+        }
+      },
+      {
+        "url": "https://ja.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*&maxlag=5&titles=%E3%83%8D%E3%82%B3&redirects=1&prop=pageimages%7Cpageprops%7Ccategories&cllimit=max&clshow=%21hidden&piprop=name%7Cthumbnail&pilicense=any&pilimit=max&pithumbsize=400",
+        "json": {
+          "query": {
+            "pages": [
+              {
+                "pageid": 1215264,
+                "ns": 0,
+                "title": "ネコ",
+                "pageimage": "Cat_poster_1.jpg",
+                "thumbnail": null
+              }
+            ]
+          }
+        }
+      },
+      {
+        "url": "https://ja.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*&maxlag=5&generator=search&gsrsearch=%22%E3%81%AD%E3%81%93%22&gsrnamespace=0&gsrlimit=50&gsrprop=&prop=pageimages%7Cpageprops%7Ccategories&cllimit=max&clshow=%21hidden&piprop=name%7Cthumbnail&pilicense=any&pilimit=max&pithumbsize=400",
+        "json": {
+          "query": {
+            "pages": [
+              {
+                "missing": true
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "expected": {
+      "status": "text",
+      "candidates": [
+        {
+          "title": "ネコ",
+          "article_url": "https://ja.wikipedia.org/wiki/%E3%83%8D%E3%82%B3"
+        }
+      ],
+      "partial": false,
+      "word": "ねコ"
+    }
+  },
+  {
+    "word": "アアアア",
+    "responses": [
+      {
+        "url": "https://ja.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*&maxlag=5&titles=%E3%82%A2%E3%82%A2%E3%82%A2%E3%82%A2&redirects=1&prop=pageimages%7Cpageprops%7Ccategories&cllimit=max&clshow=%21hidden&piprop=name%7Cthumbnail&pilicense=any&pilimit=max&pithumbsize=400",
+        "json": {
+          "query": {
+            "pages": [
+              {
+                "missing": true
+              }
+            ]
+          }
+        }
+      },
+      {
+        "url": "https://ja.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*&maxlag=5&generator=search&gsrsearch=%22%E3%81%82%E3%81%82%E3%81%82%E3%81%82%22&gsrnamespace=0&gsrlimit=50&gsrprop=&prop=pageimages%7Cpageprops%7Ccategories&cllimit=max&clshow=%21hidden&piprop=name%7Cthumbnail&pilicense=any&pilimit=max&pithumbsize=400",
+        "json": {
+          "query": {
+            "pages": [
+              {
+                "missing": true
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "expected": {
+      "status": "not_found",
+      "word": "アアアア"
+    }
+  },
+  {
+    "word": "ネコ",
+    "responses": [
+      {
+        "url": "https://ja.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*&maxlag=5&titles=%E3%83%8D%E3%82%B3&redirects=1&prop=pageimages%7Cpageprops%7Ccategories&cllimit=max&clshow=%21hidden&piprop=name%7Cthumbnail&pilicense=any&pilimit=max&pithumbsize=400",
+        "json": {
+          "query": {
+            "pages": [
+              {
+                "pageid": 1215264,
+                "ns": 0,
+                "title": "ネコ",
+                "pageimage": "Cat_poster_1.jpg",
+                "thumbnail": {
+                  "source": "https://thumb.wikimedia.org/cat.jpg"
+                },
+                "pageprops": {
+                  "disambiguation": ""
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "url": "https://ja.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*&maxlag=5&titles=%E3%83%8D%E3%82%B3&generator=links&gplnamespace=0&gpllimit=50&redirects=1&prop=pageimages%7Cpageprops%7Ccategories&cllimit=max&clshow=%21hidden&piprop=name%7Cthumbnail&pilicense=any&pilimit=max&pithumbsize=400",
+        "json": {
+          "query": {
+            "pages": [
+              {
+                "pageid": 1215264,
+                "ns": 0,
+                "title": "ネコ",
+                "pageimage": "Cat_poster_1.jpg",
+                "thumbnail": {
+                  "source": "https://thumb.wikimedia.org/cat.jpg"
+                },
+                "pageprops": {
+                  "disambiguation": ""
+                }
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "expected": {
+      "status": "ambiguous",
+      "word": "ネコ"
+    }
+  },
+  {
+    "word": "イヌ",
+    "responses": [
+      {
+        "url": "https://ja.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*&maxlag=5&titles=%E3%82%A4%E3%83%8C&redirects=1&prop=pageimages%7Cpageprops%7Ccategories&cllimit=max&clshow=%21hidden&piprop=name%7Cthumbnail&pilicense=any&pilimit=max&pithumbsize=400",
+        "json": {
+          "query": {
+            "pages": [
+              {
+                "pageid": 1215264,
+                "ns": 0,
+                "title": "イヌ",
+                "pageimage": "Cat_poster_1.jpg",
+                "thumbnail": {
+                  "source": "https://thumb.wikimedia.org/cat.jpg"
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "url": "https://thumb.wikimedia.org/cat.jpg",
+        "bytes": [
+          1,
+          2,
+          3
+        ]
+      }
+    ],
+    "expected": {
+      "status": "image",
+      "image": "AQID",
+      "article_url": "https://ja.wikipedia.org/wiki/%E3%82%A4%E3%83%8C",
+      "images": [
+        {
+          "status": "image",
+          "image": "AQID",
+          "article_url": "https://ja.wikipedia.org/wiki/%E3%82%A4%E3%83%8C",
+          "title": "イヌ"
+        }
+      ],
+      "partial": false,
+      "word": "イヌ",
+      "title": "イヌ"
+    }
+  },
+  {
+    "word": "モモ",
+    "responses": [
+      {
+        "url": "https://ja.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*&maxlag=5&titles=%E3%83%A2%E3%83%A2&redirects=1&prop=pageimages%7Cpageprops%7Ccategories&cllimit=max&clshow=%21hidden&piprop=name%7Cthumbnail&pilicense=any&pilimit=max&pithumbsize=400",
+        "json": {
+          "query": {
+            "pages": [
+              {
+                "pageid": 1215264,
+                "ns": 0,
+                "title": "モモ",
+                "pageimage": "Cat_poster_1.jpg",
+                "thumbnail": {
+                  "source": "https://thumb.wikimedia.org/cat.jpg"
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "url": "https://thumb.wikimedia.org/cat.jpg",
+        "bytes": [
+          1,
+          2,
+          3
+        ]
+      }
+    ],
+    "expected": {
+      "status": "image",
+      "image": "AQID",
+      "article_url": "https://ja.wikipedia.org/wiki/%E3%83%A2%E3%83%A2",
+      "images": [
+        {
+          "status": "image",
+          "image": "AQID",
+          "article_url": "https://ja.wikipedia.org/wiki/%E3%83%A2%E3%83%A2",
+          "title": "モモ"
+        }
+      ],
+      "partial": false,
+      "word": "モモ",
+      "title": "モモ"
+    }
+  },
+  {
+    "word": "タカ",
+    "responses": [
+      {
+        "url": "https://ja.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*&maxlag=5&titles=%E3%82%BF%E3%82%AB&redirects=1&prop=pageimages%7Cpageprops%7Ccategories&cllimit=max&clshow=%21hidden&piprop=name%7Cthumbnail&pilicense=any&pilimit=max&pithumbsize=400",
+        "json": {
+          "query": {
+            "pages": [
+              {
+                "pageid": 1215264,
+                "ns": 0,
+                "title": "タカ",
+                "pageimage": "Cat_poster_1.jpg",
+                "thumbnail": {
+                  "source": "https://thumb.wikimedia.org/cat.jpg"
+                },
+                "pageprops": {
+                  "disambiguation": ""
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "url": "https://ja.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*&maxlag=5&titles=%E3%82%BF%E3%82%AB&generator=links&gplnamespace=0&gpllimit=50&redirects=1&prop=pageimages%7Cpageprops%7Ccategories&cllimit=max&clshow=%21hidden&piprop=name%7Cthumbnail&pilicense=any&pilimit=max&pithumbsize=400",
+        "json": {
+          "query": {
+            "pages": [
+              {
+                "pageid": 76252,
+                "ns": 0,
+                "title": "鷹",
+                "pageimage": "Cat_poster_1.jpg",
+                "thumbnail": {
+                  "source": "https://thumb.wikimedia.org/cat.jpg"
+                },
+                "pageprops": {
+                  "defaultsort": "たか"
+                }
+              },
+              {
+                "pageid": 2,
+                "ns": 0,
+                "title": "高駅",
+                "pageimage": "Cat_poster_1.jpg",
+                "thumbnail": {
+                  "source": "https://thumb.wikimedia.org/cat.jpg"
+                },
+                "pageprops": {
+                  "defaultsort": "たか"
+                }
+              },
+              {
+                "pageid": 3,
+                "ns": 0,
+                "title": "タカ (通貨)",
+                "pageimage": "Cat_poster_1.jpg",
+                "thumbnail": {
+                  "source": "https://thumb.wikimedia.org/cat.jpg"
+                },
+                "pageprops": {
+                  "defaultsort": "たか"
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "url": "https://thumb.wikimedia.org/cat.jpg",
+        "bytes": [
+          1,
+          2,
+          3
+        ]
+      }
+    ],
+    "expected": {
+      "status": "image",
+      "image": "AQID",
+      "article_url": "https://ja.wikipedia.org/wiki/%E9%B7%B9",
+      "images": [
+        {
+          "status": "image",
+          "image": "AQID",
+          "article_url": "https://ja.wikipedia.org/wiki/%E9%B7%B9",
+          "title": "鷹"
+        }
+      ],
+      "partial": false,
+      "word": "タカ",
+      "title": "鷹"
+    }
+  },
+  {
+    "word": "タカ",
+    "responses": [
+      {
+        "url": "https://ja.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*&maxlag=5&titles=%E3%82%BF%E3%82%AB&redirects=1&prop=pageimages%7Cpageprops%7Ccategories&cllimit=max&clshow=%21hidden&piprop=name%7Cthumbnail&pilicense=any&pilimit=max&pithumbsize=400",
+        "json": {
+          "query": {
+            "pages": [
+              {
+                "pageid": 1215264,
+                "ns": 0,
+                "title": "タカ",
+                "pageimage": "Cat_poster_1.jpg",
+                "thumbnail": {
+                  "source": "https://thumb.wikimedia.org/cat.jpg"
+                },
+                "pageprops": {
+                  "disambiguation": ""
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "url": "https://ja.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*&maxlag=5&titles=%E3%82%BF%E3%82%AB&generator=links&gplnamespace=0&gpllimit=50&redirects=1&prop=pageimages%7Cpageprops%7Ccategories&cllimit=max&clshow=%21hidden&piprop=name%7Cthumbnail&pilicense=any&pilimit=max&pithumbsize=400",
+        "json": {
+          "query": {
+            "pages": [
+              {
+                "pageid": 76252,
+                "ns": 0,
+                "title": "鷹",
+                "pageimage": "Cat_poster_1.jpg",
+                "thumbnail": {
+                  "source": "https://thumb.wikimedia.org/cat.jpg"
+                },
+                "pageprops": {
+                  "defaultsort": "たか"
+                }
+              },
+              {
+                "pageid": 999,
+                "ns": 0,
+                "title": "別",
+                "pageimage": "Cat_poster_1.jpg",
+                "thumbnail": null,
+                "pageprops": {
+                  "defaultsort": "たか"
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "url": "https://thumb.wikimedia.org/cat.jpg",
+        "bytes": [
+          1,
+          2,
+          3
+        ]
+      }
+    ],
+    "expected": {
+      "status": "image",
+      "image": "AQID",
+      "article_url": "https://ja.wikipedia.org/wiki/%E9%B7%B9",
+      "images": [
+        {
+          "status": "image",
+          "image": "AQID",
+          "article_url": "https://ja.wikipedia.org/wiki/%E9%B7%B9",
+          "title": "鷹"
+        }
+      ],
+      "partial": false,
+      "word": "タカ",
+      "title": "鷹"
+    }
+  },
+  {
+    "word": "タカ",
+    "responses": [
+      {
+        "url": "https://ja.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*&maxlag=5&titles=%E3%82%BF%E3%82%AB&redirects=1&prop=pageimages%7Cpageprops%7Ccategories&cllimit=max&clshow=%21hidden&piprop=name%7Cthumbnail&pilicense=any&pilimit=max&pithumbsize=400",
+        "json": {
+          "query": {
+            "pages": [
+              {
+                "pageid": 1215264,
+                "ns": 0,
+                "title": "タカ",
+                "pageimage": "Cat_poster_1.jpg",
+                "thumbnail": {
+                  "source": "https://thumb.wikimedia.org/cat.jpg"
+                },
+                "pageprops": {
+                  "disambiguation": ""
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "url": "https://ja.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*&maxlag=5&titles=%E3%82%BF%E3%82%AB&generator=links&gplnamespace=0&gpllimit=50&redirects=1&prop=pageimages%7Cpageprops%7Ccategories&cllimit=max&clshow=%21hidden&piprop=name%7Cthumbnail&pilicense=any&pilimit=max&pithumbsize=400",
+        "json": {
+          "query": {
+            "pages": [
+              {
+                "pageid": 76252,
+                "ns": 0,
+                "title": "鷹",
+                "pageimage": "Cat_poster_1.jpg",
+                "thumbnail": {
+                  "source": "https://thumb.wikimedia.org/cat.jpg"
+                },
+                "pageprops": {
+                  "defaultsort": "わし"
+                }
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "expected": {
+      "status": "ambiguous",
+      "word": "タカ"
+    }
+  },
+  {
+    "word": "サカナ",
+    "responses": [
+      {
+        "url": "https://ja.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*&maxlag=5&titles=%E3%82%B5%E3%82%AB%E3%83%8A&redirects=1&prop=pageimages%7Cpageprops%7Ccategories&cllimit=max&clshow=%21hidden&piprop=name%7Cthumbnail&pilicense=any&pilimit=max&pithumbsize=400",
+        "json": {
+          "query": {
+            "pages": [
+              {
+                "pageid": 1215264,
+                "ns": 0,
+                "title": "サカナ",
+                "pageimage": "Cat_poster_1.jpg",
+                "thumbnail": {
+                  "source": "https://thumb.wikimedia.org/cat.jpg"
+                },
+                "pageprops": {
+                  "disambiguation": ""
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "url": "https://ja.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*&maxlag=5&titles=%E3%82%B5%E3%82%AB%E3%83%8A&generator=links&gplnamespace=0&gpllimit=50&redirects=1&prop=pageimages%7Cpageprops%7Ccategories&cllimit=max&clshow=%21hidden&piprop=name%7Cthumbnail&pilicense=any&pilimit=max&pithumbsize=400",
+        "json": {
+          "query": {
+            "pages": [
+              {
+                "pageid": 10,
+                "ns": 0,
+                "title": "魚類",
+                "pageimage": "Fish.jpg",
+                "thumbnail": {
+                  "source": "https://thumb.wikimedia.org/cat.jpg"
+                },
+                "pageprops": {
+                  "defaultsort": "きよるい"
+                },
+                "categories": [
+                  {
+                    "title": "Category:魚類"
+                  }
+                ]
+              },
+              {
+                "pageid": 12,
+                "ns": 0,
+                "title": "動物",
+                "pageimage": "Animal.jpg",
+                "thumbnail": {
+                  "source": "https://thumb.wikimedia.org/cat.jpg"
+                },
+                "pageprops": {
+                  "defaultsort": "どうぶつ"
+                },
+                "categories": [
+                  {
+                    "title": "Category:動物"
+                  }
+                ]
+              },
+              {
+                "pageid": 13,
+                "ns": 0,
+                "title": "肴",
+                "pageimage": "Food.jpg",
+                "thumbnail": {
+                  "source": "https://thumb.wikimedia.org/cat.jpg"
+                },
+                "pageprops": {
+                  "defaultsort": "さかな"
+                },
+                "categories": [
+                  {
+                    "title": "Category:食品"
+                  },
+                  {
+                    "title": "Category:飲酒文化"
+                  }
+                ]
+              },
+              {
+                "pageid": 14,
+                "ns": 0,
+                "title": "さかなクン",
+                "pageimage": "Person.jpg",
+                "thumbnail": {
+                  "source": "https://thumb.wikimedia.org/cat.jpg"
+                },
+                "pageprops": {
+                  "defaultsort": "さかなくん"
+                },
+                "categories": [
+                  {
+                    "title": "Category:存命人物"
+                  },
+                  {
+                    "title": "Category:魚類"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "url": "https://thumb.wikimedia.org/cat.jpg",
+        "bytes": [
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "url": "https://thumb.wikimedia.org/cat.jpg",
+        "bytes": [
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "url": "https://thumb.wikimedia.org/cat.jpg",
+        "bytes": [
+          1,
+          2,
+          3
+        ]
+      }
+    ],
+    "expected": {
+      "status": "image",
+      "image": "AQID",
+      "article_url": "https://ja.wikipedia.org/wiki/%E9%AD%9A%E9%A1%9E",
+      "images": [
+        {
+          "status": "image",
+          "image": "AQID",
+          "article_url": "https://ja.wikipedia.org/wiki/%E9%AD%9A%E9%A1%9E",
+          "title": "魚類"
+        },
+        {
+          "status": "image",
+          "image": "AQID",
+          "article_url": "https://ja.wikipedia.org/wiki/%E8%82%B4",
+          "title": "肴"
+        },
+        {
+          "status": "image",
+          "image": "AQID",
+          "article_url": "https://ja.wikipedia.org/wiki/%E3%81%95%E3%81%8B%E3%81%AA%E3%82%AF%E3%83%B3",
+          "title": "さかなクン"
+        }
+      ],
+      "partial": false,
+      "word": "サカナ",
+      "title": "魚類"
+    }
+  },
+  {
+    "word": "カイ",
+    "responses": [
+      {
+        "url": "https://ja.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*&maxlag=5&titles=%E3%82%AB%E3%82%A4&redirects=1&prop=pageimages%7Cpageprops%7Ccategories&cllimit=max&clshow=%21hidden&piprop=name%7Cthumbnail&pilicense=any&pilimit=max&pithumbsize=400",
+        "json": {
+          "query": {
+            "pages": [
+              {
+                "pageid": 1215264,
+                "ns": 0,
+                "title": "カイ",
+                "pageimage": "Cat_poster_1.jpg",
+                "thumbnail": {
+                  "source": "https://thumb.wikimedia.org/cat.jpg"
+                },
+                "pageprops": {
+                  "disambiguation": ""
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "url": "https://ja.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*&maxlag=5&titles=%E3%82%AB%E3%82%A4&generator=links&gplnamespace=0&gpllimit=50&redirects=1&prop=pageimages%7Cpageprops%7Ccategories&cllimit=max&clshow=%21hidden&piprop=name%7Cthumbnail&pilicense=any&pilimit=max&pithumbsize=400",
+        "json": {
+          "query": {
+            "pages": [
+              {
+                "pageid": 1,
+                "ns": 0,
+                "title": "Χ",
+                "pageimage": "Letter.jpg",
+                "thumbnail": {
+                  "source": "https://thumb.wikimedia.org/cat.jpg"
+                },
+                "pageprops": {
+                  "defaultsort": "かい"
+                },
+                "categories": [
+                  {
+                    "title": "Category:ギリシア文字"
+                  }
+                ]
+              }
+            ]
+          },
+          "continue": {
+            "gplcontinue": "next-page",
+            "continue": "gplcontinue||"
+          }
+        }
+      },
+      {
+        "url": "https://ja.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*&maxlag=5&titles=%E3%82%AB%E3%82%A4&generator=links&gplnamespace=0&gpllimit=50&gplcontinue=next-page&redirects=1&prop=pageimages%7Cpageprops%7Ccategories&cllimit=max&clshow=%21hidden&piprop=name%7Cthumbnail&pilicense=any&pilimit=max&pithumbsize=400",
+        "json": {
+          "query": {
+            "pages": [
+              {
+                "pageid": 11,
+                "ns": 0,
+                "title": "貝",
+                "pageimage": "Shell.jpg",
+                "thumbnail": {
+                  "source": "https://thumb.wikimedia.org/cat.jpg"
+                },
+                "pageprops": {
+                  "defaultsort": "かい"
+                },
+                "categories": [
+                  {
+                    "title": "Category:貝類"
+                  }
+                ]
+              },
+              {
+                "pageid": 1,
+                "ns": 0,
+                "title": "Χ",
+                "pageimage": "Letter.jpg",
+                "thumbnail": {
+                  "source": "https://thumb.wikimedia.org/cat.jpg"
+                },
+                "pageprops": {
+                  "defaultsort": "かい"
+                },
+                "categories": [
+                  {
+                    "title": "Category:ギリシア文字"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "url": "https://thumb.wikimedia.org/cat.jpg",
+        "bytes": [
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "url": "https://thumb.wikimedia.org/cat.jpg",
+        "bytes": [
+          1,
+          2,
+          3
+        ]
+      }
+    ],
+    "expected": {
+      "status": "image",
+      "image": "AQID",
+      "article_url": "https://ja.wikipedia.org/wiki/%E8%B2%9D",
+      "images": [
+        {
+          "status": "image",
+          "image": "AQID",
+          "article_url": "https://ja.wikipedia.org/wiki/%E8%B2%9D",
+          "title": "貝"
+        },
+        {
+          "status": "image",
+          "image": "AQID",
+          "article_url": "https://ja.wikipedia.org/wiki/%CE%A7",
+          "title": "Χ"
+        }
+      ],
+      "partial": false,
+      "word": "カイ",
+      "title": "貝"
+    }
+  },
+  {
+    "word": "モモ",
+    "responses": [
+      {
+        "url": "https://ja.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*&maxlag=5&titles=%E3%83%A2%E3%83%A2&redirects=1&prop=pageimages%7Cpageprops%7Ccategories&cllimit=max&clshow=%21hidden&piprop=name%7Cthumbnail&pilicense=any&pilimit=max&pithumbsize=400",
+        "json": {
+          "query": {
+            "pages": [
+              {
+                "pageid": 1215264,
+                "ns": 0,
+                "title": "モモ",
+                "pageimage": "Cat_poster_1.jpg",
+                "thumbnail": {
+                  "source": "https://thumb.wikimedia.org/cat.jpg"
+                },
+                "pageprops": {
+                  "disambiguation": ""
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "url": "https://ja.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*&maxlag=5&titles=%E3%83%A2%E3%83%A2&generator=links&gplnamespace=0&gpllimit=50&redirects=1&prop=pageimages%7Cpageprops%7Ccategories&cllimit=max&clshow=%21hidden&piprop=name%7Cthumbnail&pilicense=any&pilimit=max&pithumbsize=400",
+        "json": {
+          "query": {
+            "pages": [
+              {
+                "pageid": 21,
+                "ns": 0,
+                "title": "桃",
+                "pageimage": "Peach.jpg",
+                "thumbnail": {
+                  "source": "https://thumb.wikimedia.org/cat.jpg"
+                },
+                "pageprops": {
+                  "defaultsort": "もも"
+                },
+                "categories": [
+                  {
+                    "title": "Category:果物"
+                  }
+                ]
+              },
+              {
+                "pageid": 22,
+                "ns": 0,
+                "title": "モモ",
+                "pageimage": "Novel.jpg",
+                "thumbnail": {
+                  "source": "https://thumb.wikimedia.org/cat.jpg"
+                },
+                "pageprops": {
+                  "defaultsort": "もも"
+                },
+                "categories": [
+                  {
+                    "title": "Category:小説"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "url": "https://thumb.wikimedia.org/cat.jpg",
+        "bytes": [
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "url": "https://thumb.wikimedia.org/cat.jpg",
+        "bytes": [
+          1,
+          2,
+          3
+        ]
+      }
+    ],
+    "expected": {
+      "status": "image",
+      "image": "AQID",
+      "article_url": "https://ja.wikipedia.org/wiki/%E6%A1%83",
+      "images": [
+        {
+          "status": "image",
+          "image": "AQID",
+          "article_url": "https://ja.wikipedia.org/wiki/%E6%A1%83",
+          "title": "桃"
+        },
+        {
+          "status": "image",
+          "image": "AQID",
+          "article_url": "https://ja.wikipedia.org/wiki/%E3%83%A2%E3%83%A2",
+          "title": "モモ"
+        }
+      ],
+      "partial": false,
+      "word": "モモ",
+      "title": "桃"
+    }
+  },
+  {
+    "word": "パン",
+    "responses": [
+      {
+        "url": "https://ja.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*&maxlag=5&titles=%E3%83%91%E3%83%B3&redirects=1&prop=pageimages%7Cpageprops%7Ccategories&cllimit=max&clshow=%21hidden&piprop=name%7Cthumbnail&pilicense=any&pilimit=max&pithumbsize=400",
+        "json": {
+          "query": {
+            "pages": [
+              {
+                "pageid": 1215264,
+                "ns": 0,
+                "title": "パン",
+                "pageimage": "Cat_poster_1.jpg",
+                "thumbnail": {
+                  "source": "https://thumb.wikimedia.org/cat.jpg"
+                },
+                "pageprops": {
+                  "disambiguation": ""
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "url": "https://ja.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*&maxlag=5&titles=%E3%83%91%E3%83%B3&generator=links&gplnamespace=0&gpllimit=50&redirects=1&prop=pageimages%7Cpageprops%7Ccategories&cllimit=max&clshow=%21hidden&piprop=name%7Cthumbnail&pilicense=any&pilimit=max&pithumbsize=400",
+        "json": {
+          "query": {
+            "pages": [
+              {
+                "pageid": 31,
+                "ns": 0,
+                "title": "パン (食品)",
+                "pageimage": "Bread.jpg",
+                "thumbnail": {
+                  "source": "https://thumb.wikimedia.org/cat.jpg"
+                },
+                "pageprops": {
+                  "defaultsort": "ぱん"
+                },
+                "categories": [
+                  {
+                    "title": "Category:食品"
+                  }
+                ]
+              },
+              {
+                "pageid": 32,
+                "ns": 0,
+                "title": "潘",
+                "pageimage": "Name.jpg",
+                "thumbnail": {
+                  "source": "https://thumb.wikimedia.org/cat.jpg"
+                },
+                "pageprops": {
+                  "defaultsort": "ぱん"
+                },
+                "categories": [
+                  {
+                    "title": "Category:姓"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "url": "https://thumb.wikimedia.org/cat.jpg",
+        "bytes": [
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "url": "https://thumb.wikimedia.org/cat.jpg",
+        "bytes": [
+          1,
+          2,
+          3
+        ]
+      }
+    ],
+    "expected": {
+      "status": "image",
+      "image": "AQID",
+      "article_url": "https://ja.wikipedia.org/wiki/%E3%83%91%E3%83%B3%20%28%E9%A3%9F%E5%93%81%29",
+      "images": [
+        {
+          "status": "image",
+          "image": "AQID",
+          "article_url": "https://ja.wikipedia.org/wiki/%E3%83%91%E3%83%B3%20%28%E9%A3%9F%E5%93%81%29",
+          "title": "パン (食品)"
+        },
+        {
+          "status": "image",
+          "image": "AQID",
+          "article_url": "https://ja.wikipedia.org/wiki/%E6%BD%98",
+          "title": "潘"
+        }
+      ],
+      "partial": false,
+      "word": "パン",
+      "title": "パン (食品)"
+    }
+  },
+  {
+    "word": "イス",
+    "responses": [
+      {
+        "url": "https://ja.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*&maxlag=5&titles=%E3%82%A4%E3%82%B9&redirects=1&prop=pageimages%7Cpageprops%7Ccategories&cllimit=max&clshow=%21hidden&piprop=name%7Cthumbnail&pilicense=any&pilimit=max&pithumbsize=400",
+        "json": {
+          "query": {
+            "pages": [
+              {
+                "pageid": 1215264,
+                "ns": 0,
+                "title": "イス",
+                "pageimage": "Cat_poster_1.jpg",
+                "thumbnail": {
+                  "source": "https://thumb.wikimedia.org/cat.jpg"
+                },
+                "pageprops": {
+                  "disambiguation": ""
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "url": "https://ja.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*&maxlag=5&titles=%E3%82%A4%E3%82%B9&generator=links&gplnamespace=0&gpllimit=50&redirects=1&prop=pageimages%7Cpageprops%7Ccategories&cllimit=max&clshow=%21hidden&piprop=name%7Cthumbnail&pilicense=any&pilimit=max&pithumbsize=400",
+        "json": {
+          "query": {
+            "pages": [
+              {
+                "pageid": 41,
+                "ns": 0,
+                "title": "椅子",
+                "pageimage": "Chair.jpg",
+                "thumbnail": {
+                  "source": "https://thumb.wikimedia.org/cat.jpg"
+                },
+                "pageprops": {
+                  "defaultsort": "いす"
+                },
+                "categories": [
+                  {
+                    "title": "Category:家具"
+                  }
+                ]
+              },
+              {
+                "pageid": 42,
+                "ns": 0,
+                "title": "イス",
+                "pageimage": "Character.jpg",
+                "thumbnail": {
+                  "source": "https://thumb.wikimedia.org/cat.jpg"
+                },
+                "pageprops": {
+                  "defaultsort": "いす"
+                },
+                "categories": [
+                  {
+                    "title": "Category:架空のキャラクター"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "url": "https://thumb.wikimedia.org/cat.jpg",
+        "bytes": [
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "url": "https://thumb.wikimedia.org/cat.jpg",
+        "bytes": [
+          1,
+          2,
+          3
+        ]
+      }
+    ],
+    "expected": {
+      "status": "image",
+      "image": "AQID",
+      "article_url": "https://ja.wikipedia.org/wiki/%E6%A4%85%E5%AD%90",
+      "images": [
+        {
+          "status": "image",
+          "image": "AQID",
+          "article_url": "https://ja.wikipedia.org/wiki/%E6%A4%85%E5%AD%90",
+          "title": "椅子"
+        },
+        {
+          "status": "image",
+          "image": "AQID",
+          "article_url": "https://ja.wikipedia.org/wiki/%E3%82%A4%E3%82%B9",
+          "title": "イス"
+        }
+      ],
+      "partial": false,
+      "word": "イス",
+      "title": "椅子"
+    }
+  },
+  {
+    "word": "にく",
+    "responses": [
+      {
+        "url": "https://ja.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*&maxlag=5&titles=%E3%81%AB%E3%81%8F&redirects=1&prop=pageimages%7Cpageprops%7Ccategories&cllimit=max&clshow=%21hidden&piprop=name%7Cthumbnail&pilicense=any&pilimit=max&pithumbsize=400",
+        "json": {
+          "query": {
+            "pages": [
+              {
+                "missing": true
+              }
+            ]
+          }
+        }
+      },
+      {
+        "url": "https://ja.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*&maxlag=5&titles=%E3%83%8B%E3%82%AF&redirects=1&prop=pageimages%7Cpageprops%7Ccategories&cllimit=max&clshow=%21hidden&piprop=name%7Cthumbnail&pilicense=any&pilimit=max&pithumbsize=400",
+        "json": {
+          "query": {
+            "pages": [
+              {
+                "missing": true
+              }
+            ]
+          }
+        }
+      },
+      {
+        "url": "https://ja.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*&maxlag=5&generator=search&gsrsearch=%22%E3%81%AB%E3%81%8F%22&gsrnamespace=0&gsrlimit=50&gsrprop=&prop=pageimages%7Cpageprops%7Ccategories&cllimit=max&clshow=%21hidden&piprop=name%7Cthumbnail&pilicense=any&pilimit=max&pithumbsize=400",
+        "json": {
+          "query": {
+            "pages": [
+              {
+                "ns": 0,
+                "title": "肉",
+                "pageprops": {
+                  "defaultsort": "にく",
+                  "disambiguation": ""
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "url": "https://ja.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*&maxlag=5&titles=%E8%82%89&generator=links&gplnamespace=0&gpllimit=50&redirects=1&prop=pageimages%7Cpageprops%7Ccategories&cllimit=max&clshow=%21hidden&piprop=name%7Cthumbnail&pilicense=any&pilimit=max&pithumbsize=400",
+        "json": {
+          "query": {
+            "pages": [
+              {
+                "pageid": 301,
+                "ns": 0,
+                "title": "食肉",
+                "pageimage": "Meat.jpg",
+                "thumbnail": {
+                  "source": "https://thumb.wikimedia.org/cat.jpg"
+                },
+                "pageprops": {
+                  "defaultsort": "しよくにく"
+                },
+                "categories": [
+                  {
+                    "title": "Category:肉料理"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "url": "https://thumb.wikimedia.org/cat.jpg",
+        "bytes": [
+          1,
+          2,
+          3
+        ]
+      }
+    ],
+    "expected": {
+      "status": "image",
+      "image": "AQID",
+      "article_url": "https://ja.wikipedia.org/wiki/%E9%A3%9F%E8%82%89",
+      "images": [
+        {
+          "status": "image",
+          "image": "AQID",
+          "article_url": "https://ja.wikipedia.org/wiki/%E9%A3%9F%E8%82%89",
+          "title": "食肉"
+        }
+      ],
+      "partial": false,
+      "word": "にく",
+      "title": "食肉"
+    }
+  },
+  {
+    "word": "ニク",
+    "responses": [
+      {
+        "url": "https://ja.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*&maxlag=5&titles=%E3%83%8B%E3%82%AF&redirects=1&prop=pageimages%7Cpageprops%7Ccategories&cllimit=max&clshow=%21hidden&piprop=name%7Cthumbnail&pilicense=any&pilimit=max&pithumbsize=400",
+        "json": {
+          "query": {
+            "pages": [
+              {
+                "missing": true
+              }
+            ]
+          }
+        }
+      },
+      {
+        "url": "https://ja.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*&maxlag=5&generator=search&gsrsearch=%22%E3%81%AB%E3%81%8F%22&gsrnamespace=0&gsrlimit=50&gsrprop=&prop=pageimages%7Cpageprops%7Ccategories&cllimit=max&clshow=%21hidden&piprop=name%7Cthumbnail&pilicense=any&pilimit=max&pithumbsize=400",
+        "json": {
+          "query": {
+            "pages": [
+              {
+                "ns": 0,
+                "title": "肉",
+                "pageprops": {
+                  "defaultsort": "にく",
+                  "disambiguation": ""
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "url": "https://ja.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*&maxlag=5&titles=%E8%82%89&generator=links&gplnamespace=0&gpllimit=50&redirects=1&prop=pageimages%7Cpageprops%7Ccategories&cllimit=max&clshow=%21hidden&piprop=name%7Cthumbnail&pilicense=any&pilimit=max&pithumbsize=400",
+        "json": {
+          "query": {
+            "pages": [
+              {
+                "pageid": 301,
+                "ns": 0,
+                "title": "食肉",
+                "pageimage": "Meat.jpg",
+                "thumbnail": {
+                  "source": "https://thumb.wikimedia.org/cat.jpg"
+                },
+                "pageprops": {
+                  "defaultsort": "しよくにく"
+                },
+                "categories": [
+                  {
+                    "title": "Category:肉料理"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "url": "https://thumb.wikimedia.org/cat.jpg",
+        "bytes": [
+          1,
+          2,
+          3
+        ]
+      }
+    ],
+    "expected": {
+      "status": "image",
+      "image": "AQID",
+      "article_url": "https://ja.wikipedia.org/wiki/%E9%A3%9F%E8%82%89",
+      "images": [
+        {
+          "status": "image",
+          "image": "AQID",
+          "article_url": "https://ja.wikipedia.org/wiki/%E9%A3%9F%E8%82%89",
+          "title": "食肉"
+        }
+      ],
+      "partial": false,
+      "word": "ニク",
+      "title": "食肉"
+    }
+  },
+  {
+    "word": "ミッキー",
+    "responses": [
+      {
+        "url": "https://ja.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*&maxlag=5&titles=%E3%83%9F%E3%83%83%E3%82%AD%E3%83%BC&redirects=1&prop=pageimages%7Cpageprops%7Ccategories&cllimit=max&clshow=%21hidden&piprop=name%7Cthumbnail&pilicense=any&pilimit=max&pithumbsize=400",
+        "json": {
+          "query": {
+            "pages": [
+              {
+                "pageid": 1215264,
+                "ns": 0,
+                "title": "ミッキー",
+                "pageimage": "Cat_poster_1.jpg",
+                "thumbnail": {
+                  "source": "https://thumb.wikimedia.org/cat.jpg"
+                },
+                "pageprops": {
+                  "disambiguation": ""
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "url": "https://ja.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*&maxlag=5&titles=%E3%83%9F%E3%83%83%E3%82%AD%E3%83%BC&generator=links&gplnamespace=0&gpllimit=50&redirects=1&prop=pageimages%7Cpageprops%7Ccategories&cllimit=max&clshow=%21hidden&piprop=name%7Cthumbnail&pilicense=any&pilimit=max&pithumbsize=400",
+        "json": {
+          "query": {
+            "pages": [
+              {
+                "pageid": 401,
+                "ns": 0,
+                "title": "ミッキーマウス",
+                "pageimage": "Mouse.png",
+                "thumbnail": {
+                  "source": "https://thumb.wikimedia.org/cat.jpg"
+                },
+                "pageprops": {
+                  "defaultsort": "みつきい まうす"
+                },
+                "categories": [
+                  {
+                    "title": "Category:架空のキャラクター"
+                  }
+                ]
+              },
+              {
+                "pageid": 402,
+                "ns": 0,
+                "title": "ピアノ奏者",
+                "pageimage": "Unrelated.jpg",
+                "thumbnail": {
+                  "source": "https://thumb.wikimedia.org/cat.jpg"
+                },
+                "pageprops": {
+                  "defaultsort": "ひあのそうしや"
+                },
+                "categories": [
+                  {
+                    "title": "Category:人物"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "url": "https://ja.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*&maxlag=5&generator=search&gsrsearch=%22%E3%81%BF%E3%81%A3%E3%81%8D%E3%83%BC%22&gsrnamespace=0&gsrlimit=50&gsrprop=&prop=pageimages%7Cpageprops%7Ccategories&cllimit=max&clshow=%21hidden&piprop=name%7Cthumbnail&pilicense=any&pilimit=max&pithumbsize=400",
+        "json": {
+          "query": {
+            "pages": []
+          }
+        }
+      },
+      {
+        "url": "https://thumb.wikimedia.org/cat.jpg",
+        "bytes": [
+          1,
+          2,
+          3
+        ]
+      }
+    ],
+    "expected": {
+      "status": "image",
+      "image": "AQID",
+      "article_url": "https://ja.wikipedia.org/wiki/%E3%83%9F%E3%83%83%E3%82%AD%E3%83%BC%E3%83%9E%E3%82%A6%E3%82%B9",
+      "images": [
+        {
+          "status": "image",
+          "image": "AQID",
+          "article_url": "https://ja.wikipedia.org/wiki/%E3%83%9F%E3%83%83%E3%82%AD%E3%83%BC%E3%83%9E%E3%82%A6%E3%82%B9",
+          "title": "ミッキーマウス"
+        }
+      ],
+      "partial": false,
+      "word": "ミッキー",
+      "title": "ミッキーマウス"
+    }
+  },
+  {
+    "word": "みっきー",
+    "responses": [
+      {
+        "url": "https://ja.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*&maxlag=5&titles=%E3%81%BF%E3%81%A3%E3%81%8D%E3%83%BC&redirects=1&prop=pageimages%7Cpageprops%7Ccategories&cllimit=max&clshow=%21hidden&piprop=name%7Cthumbnail&pilicense=any&pilimit=max&pithumbsize=400",
+        "json": {
+          "query": {
+            "pages": [
+              {
+                "pageid": 1215264,
+                "ns": 0,
+                "title": "ミッキー",
+                "pageimage": "Cat_poster_1.jpg",
+                "thumbnail": {
+                  "source": "https://thumb.wikimedia.org/cat.jpg"
+                },
+                "pageprops": {
+                  "disambiguation": ""
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "url": "https://ja.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*&maxlag=5&titles=%E3%83%9F%E3%83%83%E3%82%AD%E3%83%BC&generator=links&gplnamespace=0&gpllimit=50&redirects=1&prop=pageimages%7Cpageprops%7Ccategories&cllimit=max&clshow=%21hidden&piprop=name%7Cthumbnail&pilicense=any&pilimit=max&pithumbsize=400",
+        "json": {
+          "query": {
+            "pages": [
+              {
+                "pageid": 401,
+                "ns": 0,
+                "title": "ミッキーマウス",
+                "pageimage": "Mouse.png",
+                "thumbnail": {
+                  "source": "https://thumb.wikimedia.org/cat.jpg"
+                },
+                "pageprops": {
+                  "defaultsort": "みつきい まうす"
+                },
+                "categories": [
+                  {
+                    "title": "Category:架空のキャラクター"
+                  }
+                ]
+              },
+              {
+                "pageid": 402,
+                "ns": 0,
+                "title": "ピアノ奏者",
+                "pageimage": "Unrelated.jpg",
+                "thumbnail": {
+                  "source": "https://thumb.wikimedia.org/cat.jpg"
+                },
+                "pageprops": {
+                  "defaultsort": "ひあのそうしや"
+                },
+                "categories": [
+                  {
+                    "title": "Category:人物"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "url": "https://ja.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*&maxlag=5&generator=search&gsrsearch=%22%E3%81%BF%E3%81%A3%E3%81%8D%E3%83%BC%22&gsrnamespace=0&gsrlimit=50&gsrprop=&prop=pageimages%7Cpageprops%7Ccategories&cllimit=max&clshow=%21hidden&piprop=name%7Cthumbnail&pilicense=any&pilimit=max&pithumbsize=400",
+        "json": {
+          "query": {
+            "pages": []
+          }
+        }
+      },
+      {
+        "url": "https://thumb.wikimedia.org/cat.jpg",
+        "bytes": [
+          1,
+          2,
+          3
+        ]
+      }
+    ],
+    "expected": {
+      "status": "image",
+      "image": "AQID",
+      "article_url": "https://ja.wikipedia.org/wiki/%E3%83%9F%E3%83%83%E3%82%AD%E3%83%BC%E3%83%9E%E3%82%A6%E3%82%B9",
+      "images": [
+        {
+          "status": "image",
+          "image": "AQID",
+          "article_url": "https://ja.wikipedia.org/wiki/%E3%83%9F%E3%83%83%E3%82%AD%E3%83%BC%E3%83%9E%E3%82%A6%E3%82%B9",
+          "title": "ミッキーマウス"
+        }
+      ],
+      "partial": false,
+      "word": "みっきー",
+      "title": "ミッキーマウス"
+    }
+  },
+  {
+    "word": "ナイコトバ",
+    "responses": [
+      {
+        "url": "https://ja.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*&maxlag=5&titles=%E3%83%8A%E3%82%A4%E3%82%B3%E3%83%88%E3%83%90&redirects=1&prop=pageimages%7Cpageprops%7Ccategories&cllimit=max&clshow=%21hidden&piprop=name%7Cthumbnail&pilicense=any&pilimit=max&pithumbsize=400",
+        "json": {
+          "query": {
+            "pages": [
+              {
+                "missing": true
+              }
+            ]
+          }
+        }
+      },
+      {
+        "url": "https://ja.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*&maxlag=5&generator=search&gsrsearch=%22%E3%81%AA%E3%81%84%E3%81%93%E3%81%A8%E3%81%B0%22&gsrnamespace=0&gsrlimit=50&gsrprop=&prop=pageimages%7Cpageprops%7Ccategories&cllimit=max&clshow=%21hidden&piprop=name%7Cthumbnail&pilicense=any&pilimit=max&pithumbsize=400",
+        "json": {
+          "query": {
+            "pages": [
+              {
+                "pageid": 10,
+                "ns": 0,
+                "title": "魚類",
+                "pageimage": "Fish.jpg",
+                "thumbnail": {
+                  "source": "https://thumb.wikimedia.org/cat.jpg"
+                },
+                "pageprops": {
+                  "defaultsort": "きよるい"
+                },
+                "categories": [
+                  {
+                    "title": "Category:魚類"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "expected": {
+      "status": "not_found",
+      "word": "ナイコトバ"
+    }
+  },
+  {
+    "word": "カイ",
+    "responses": [
+      {
+        "url": "https://ja.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*&maxlag=5&titles=%E3%82%AB%E3%82%A4&redirects=1&prop=pageimages%7Cpageprops%7Ccategories&cllimit=max&clshow=%21hidden&piprop=name%7Cthumbnail&pilicense=any&pilimit=max&pithumbsize=400",
+        "json": {
+          "query": {
+            "pages": [
+              {
+                "pageid": 1215264,
+                "ns": 0,
+                "title": "タカ",
+                "pageimage": "Cat_poster_1.jpg",
+                "thumbnail": {
+                  "source": "https://thumb.wikimedia.org/cat.jpg"
+                },
+                "pageprops": {
+                  "disambiguation": ""
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "url": "https://ja.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*&maxlag=5&titles=%E3%82%BF%E3%82%AB&generator=links&gplnamespace=0&gpllimit=50&redirects=1&prop=pageimages%7Cpageprops%7Ccategories&cllimit=max&clshow=%21hidden&piprop=name%7Cthumbnail&pilicense=any&pilimit=max&pithumbsize=400",
+        "json": {
+          "query": {
+            "pages": [
+              {
+                "pageid": 11,
+                "ns": 0,
+                "title": "貝",
+                "pageimage": "Shell.jpg",
+                "thumbnail": {
+                  "source": "https://thumb.wikimedia.org/cat.jpg"
+                },
+                "pageprops": {
+                  "defaultsort": "かい"
+                },
+                "categories": [
+                  {
+                    "title": "Category:貝類"
+                  }
+                ]
+              }
+            ]
+          },
+          "continue": {
+            "gplcontinue": "more"
+          }
+        }
+      },
+      {
+        "url": "https://ja.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*&maxlag=5&titles=%E3%82%BF%E3%82%AB&generator=links&gplnamespace=0&gpllimit=50&gplcontinue=more&redirects=1&prop=pageimages%7Cpageprops%7Ccategories&cllimit=max&clshow=%21hidden&piprop=name%7Cthumbnail&pilicense=any&pilimit=max&pithumbsize=400",
+        "json": {
+          "query": {
+            "pages": [
+              {
+                "pageid": 11,
+                "ns": 0,
+                "title": "貝",
+                "pageimage": "Shell.jpg",
+                "thumbnail": {
+                  "source": "https://thumb.wikimedia.org/cat.jpg"
+                },
+                "pageprops": {
+                  "defaultsort": "かい"
+                },
+                "categories": [
+                  {
+                    "title": "Category:貝類"
+                  }
+                ]
+              }
+            ]
+          },
+          "continue": {
+            "gplcontinue": "more"
+          }
+        }
+      },
+      {
+        "url": "https://ja.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*&maxlag=5&titles=%E3%82%BF%E3%82%AB&generator=links&gplnamespace=0&gpllimit=50&gplcontinue=more&redirects=1&prop=pageimages%7Cpageprops%7Ccategories&cllimit=max&clshow=%21hidden&piprop=name%7Cthumbnail&pilicense=any&pilimit=max&pithumbsize=400",
+        "json": {
+          "query": {
+            "pages": [
+              {
+                "pageid": 11,
+                "ns": 0,
+                "title": "貝",
+                "pageimage": "Shell.jpg",
+                "thumbnail": {
+                  "source": "https://thumb.wikimedia.org/cat.jpg"
+                },
+                "pageprops": {
+                  "defaultsort": "かい"
+                },
+                "categories": [
+                  {
+                    "title": "Category:貝類"
+                  }
+                ]
+              }
+            ]
+          },
+          "continue": {
+            "gplcontinue": "more"
+          }
+        }
+      }
+    ],
+    "expected": {
+      "status": "ambiguous",
+      "word": "カイ"
+    }
+  },
+  {
+    "word": "ほん",
+    "responses": [
+      {
+        "url": "https://ja.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*&maxlag=5&titles=%E3%81%BB%E3%82%93&redirects=1&prop=pageimages%7Cpageprops%7Ccategories&cllimit=max&clshow=%21hidden&piprop=name%7Cthumbnail&pilicense=any&pilimit=max&pithumbsize=400",
+        "json": {
+          "query": {
+            "pages": [
+              {
+                "missing": true
+              }
+            ]
+          }
+        }
+      },
+      {
+        "url": "https://ja.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*&maxlag=5&titles=%E3%83%9B%E3%83%B3&redirects=1&prop=pageimages%7Cpageprops%7Ccategories&cllimit=max&clshow=%21hidden&piprop=name%7Cthumbnail&pilicense=any&pilimit=max&pithumbsize=400",
+        "json": {
+          "query": {
+            "pages": [
+              {
+                "pageid": 1215264,
+                "ns": 0,
+                "title": "ホン",
+                "pageimage": "Cat_poster_1.jpg",
+                "thumbnail": null
+              }
+            ]
+          }
+        }
+      },
+      {
+        "url": "https://ja.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*&maxlag=5&generator=search&gsrsearch=%22%E3%81%BB%E3%82%93%22&gsrnamespace=0&gsrlimit=50&gsrprop=&prop=pageimages%7Cpageprops%7Ccategories&cllimit=max&clshow=%21hidden&piprop=name%7Cthumbnail&pilicense=any&pilimit=max&pithumbsize=400",
+        "json": {
+          "query": {
+            "pages": [
+              {
+                "pageid": 1215264,
+                "ns": 0,
+                "title": "本",
+                "pageimage": "Cat_poster_1.jpg",
+                "thumbnail": {
+                  "source": "https://thumb.wikimedia.org/cat.jpg"
+                },
+                "pageprops": {
+                  "defaultsort": "ほん"
+                }
+              },
+              {
+                "pageid": 1215264,
+                "ns": 0,
+                "title": "絵本",
+                "pageimage": "Cat_poster_1.jpg",
+                "thumbnail": {
+                  "source": "https://thumb.wikimedia.org/cat.jpg"
+                },
+                "pageprops": {
+                  "defaultsort": "えほん"
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "url": "https://thumb.wikimedia.org/cat.jpg",
+        "bytes": [
+          1,
+          2,
+          3
+        ]
+      }
+    ],
+    "expected": {
+      "status": "image",
+      "image": "AQID",
+      "article_url": "https://ja.wikipedia.org/wiki/%E6%9C%AC",
+      "images": [
+        {
+          "status": "image",
+          "image": "AQID",
+          "article_url": "https://ja.wikipedia.org/wiki/%E6%9C%AC",
+          "title": "本"
+        }
+      ],
+      "partial": false,
+      "word": "ほん",
+      "title": "本"
+    }
+  },
+  {
+    "word": "ホン",
+    "responses": [
+      {
+        "url": "https://ja.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*&maxlag=5&titles=%E3%83%9B%E3%83%B3&redirects=1&prop=pageimages%7Cpageprops%7Ccategories&cllimit=max&clshow=%21hidden&piprop=name%7Cthumbnail&pilicense=any&pilimit=max&pithumbsize=400",
+        "json": {
+          "query": {
+            "pages": [
+              {
+                "pageid": 1215264,
+                "ns": 0,
+                "title": "ホン",
+                "pageimage": "Cat_poster_1.jpg",
+                "thumbnail": null
+              }
+            ]
+          }
+        }
+      },
+      {
+        "url": "https://ja.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*&maxlag=5&generator=search&gsrsearch=%22%E3%81%BB%E3%82%93%22&gsrnamespace=0&gsrlimit=50&gsrprop=&prop=pageimages%7Cpageprops%7Ccategories&cllimit=max&clshow=%21hidden&piprop=name%7Cthumbnail&pilicense=any&pilimit=max&pithumbsize=400",
+        "json": {
+          "query": {
+            "pages": [
+              {
+                "pageid": 1215264,
+                "ns": 0,
+                "title": "本",
+                "pageimage": "Cat_poster_1.jpg",
+                "thumbnail": {
+                  "source": "https://thumb.wikimedia.org/cat.jpg"
+                },
+                "pageprops": {
+                  "defaultsort": "ほん"
+                }
+              },
+              {
+                "pageid": 1215264,
+                "ns": 0,
+                "title": "絵本",
+                "pageimage": "Cat_poster_1.jpg",
+                "thumbnail": {
+                  "source": "https://thumb.wikimedia.org/cat.jpg"
+                },
+                "pageprops": {
+                  "defaultsort": "えほん"
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "url": "https://thumb.wikimedia.org/cat.jpg",
+        "bytes": [
+          1,
+          2,
+          3
+        ]
+      }
+    ],
+    "expected": {
+      "status": "image",
+      "image": "AQID",
+      "article_url": "https://ja.wikipedia.org/wiki/%E6%9C%AC",
+      "images": [
+        {
+          "status": "image",
+          "image": "AQID",
+          "article_url": "https://ja.wikipedia.org/wiki/%E6%9C%AC",
+          "title": "本"
+        }
+      ],
+      "partial": false,
+      "word": "ホン",
+      "title": "本"
+    }
+  },
+  {
+    "word": "はなび",
+    "responses": [
+      {
+        "url": "https://ja.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*&maxlag=5&titles=%E3%81%AF%E3%81%AA%E3%81%B3&redirects=1&prop=pageimages%7Cpageprops%7Ccategories&cllimit=max&clshow=%21hidden&piprop=name%7Cthumbnail&pilicense=any&pilimit=max&pithumbsize=400",
+        "json": {
+          "query": {
+            "pages": [
+              {
+                "missing": true
+              }
+            ]
+          }
+        }
+      },
+      {
+        "url": "https://ja.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*&maxlag=5&titles=%E3%83%8F%E3%83%8A%E3%83%93&redirects=1&prop=pageimages%7Cpageprops%7Ccategories&cllimit=max&clshow=%21hidden&piprop=name%7Cthumbnail&pilicense=any&pilimit=max&pithumbsize=400",
+        "json": {
+          "query": {
+            "pages": [
+              {
+                "missing": true
+              }
+            ]
+          }
+        }
+      },
+      {
+        "url": "https://ja.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*&maxlag=5&generator=search&gsrsearch=%22%E3%81%AF%E3%81%AA%E3%81%B3%22&gsrnamespace=0&gsrlimit=50&gsrprop=&prop=pageimages%7Cpageprops%7Ccategories&cllimit=max&clshow=%21hidden&piprop=name%7Cthumbnail&pilicense=any&pilimit=max&pithumbsize=400",
+        "json": {
+          "query": {
+            "pages": [
+              {
+                "pageid": 1215264,
+                "ns": 0,
+                "title": "花火",
+                "pageimage": "Cat_poster_1.jpg",
+                "thumbnail": {
+                  "source": "https://thumb.wikimedia.org/cat.jpg"
+                },
+                "pageprops": {
+                  "defaultsort": "はなひ"
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "url": "https://thumb.wikimedia.org/cat.jpg",
+        "bytes": [
+          1,
+          2,
+          3
+        ]
+      }
+    ],
+    "expected": {
+      "status": "image",
+      "image": "AQID",
+      "article_url": "https://ja.wikipedia.org/wiki/%E8%8A%B1%E7%81%AB",
+      "images": [
+        {
+          "status": "image",
+          "image": "AQID",
+          "article_url": "https://ja.wikipedia.org/wiki/%E8%8A%B1%E7%81%AB",
+          "title": "花火"
+        }
+      ],
+      "partial": false,
+      "word": "はなび",
+      "title": "花火"
+    }
+  },
+  {
+    "word": "ハナビ",
+    "responses": [
+      {
+        "url": "https://ja.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*&maxlag=5&titles=%E3%83%8F%E3%83%8A%E3%83%93&redirects=1&prop=pageimages%7Cpageprops%7Ccategories&cllimit=max&clshow=%21hidden&piprop=name%7Cthumbnail&pilicense=any&pilimit=max&pithumbsize=400",
+        "json": {
+          "query": {
+            "pages": [
+              {
+                "missing": true
+              }
+            ]
+          }
+        }
+      },
+      {
+        "url": "https://ja.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*&maxlag=5&generator=search&gsrsearch=%22%E3%81%AF%E3%81%AA%E3%81%B3%22&gsrnamespace=0&gsrlimit=50&gsrprop=&prop=pageimages%7Cpageprops%7Ccategories&cllimit=max&clshow=%21hidden&piprop=name%7Cthumbnail&pilicense=any&pilimit=max&pithumbsize=400",
+        "json": {
+          "query": {
+            "pages": [
+              {
+                "pageid": 1215264,
+                "ns": 0,
+                "title": "花火",
+                "pageimage": "Cat_poster_1.jpg",
+                "thumbnail": {
+                  "source": "https://thumb.wikimedia.org/cat.jpg"
+                },
+                "pageprops": {
+                  "defaultsort": "はなひ"
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "url": "https://thumb.wikimedia.org/cat.jpg",
+        "bytes": [
+          1,
+          2,
+          3
+        ]
+      }
+    ],
+    "expected": {
+      "status": "image",
+      "image": "AQID",
+      "article_url": "https://ja.wikipedia.org/wiki/%E8%8A%B1%E7%81%AB",
+      "images": [
+        {
+          "status": "image",
+          "image": "AQID",
+          "article_url": "https://ja.wikipedia.org/wiki/%E8%8A%B1%E7%81%AB",
+          "title": "花火"
+        }
+      ],
+      "partial": false,
+      "word": "ハナビ",
+      "title": "花火"
+    }
+  },
+  {
+    "word": "ぱんだ",
+    "responses": [
+      {
+        "url": "https://ja.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*&maxlag=5&titles=%E3%81%B1%E3%82%93%E3%81%A0&redirects=1&prop=pageimages%7Cpageprops%7Ccategories&cllimit=max&clshow=%21hidden&piprop=name%7Cthumbnail&pilicense=any&pilimit=max&pithumbsize=400",
+        "json": {
+          "query": {
+            "pages": [
+              {
+                "missing": true
+              }
+            ]
+          }
+        }
+      },
+      {
+        "url": "https://ja.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*&maxlag=5&titles=%E3%83%91%E3%83%B3%E3%83%80&redirects=1&prop=pageimages%7Cpageprops%7Ccategories&cllimit=max&clshow=%21hidden&piprop=name%7Cthumbnail&pilicense=any&pilimit=max&pithumbsize=400",
+        "json": {
+          "query": {
+            "pages": [
+              {
+                "missing": true
+              }
+            ]
+          }
+        }
+      },
+      {
+        "url": "https://ja.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*&maxlag=5&generator=search&gsrsearch=%22%E3%81%B1%E3%82%93%E3%81%A0%22&gsrnamespace=0&gsrlimit=50&gsrprop=&prop=pageimages%7Cpageprops%7Ccategories&cllimit=max&clshow=%21hidden&piprop=name%7Cthumbnail&pilicense=any&pilimit=max&pithumbsize=400",
+        "json": {
+          "query": {
+            "pages": [
+              {
+                "pageid": 1215264,
+                "ns": 0,
+                "title": "パンダ",
+                "pageimage": "Cat_poster_1.jpg",
+                "thumbnail": {
+                  "source": "https://thumb.wikimedia.org/cat.jpg"
+                },
+                "pageprops": {
+                  "defaultsort": "はんた"
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "url": "https://thumb.wikimedia.org/cat.jpg",
+        "bytes": [
+          1,
+          2,
+          3
+        ]
+      }
+    ],
+    "expected": {
+      "status": "image",
+      "image": "AQID",
+      "article_url": "https://ja.wikipedia.org/wiki/%E3%83%91%E3%83%B3%E3%83%80",
+      "images": [
+        {
+          "status": "image",
+          "image": "AQID",
+          "article_url": "https://ja.wikipedia.org/wiki/%E3%83%91%E3%83%B3%E3%83%80",
+          "title": "パンダ"
+        }
+      ],
+      "partial": false,
+      "word": "ぱんだ",
+      "title": "パンダ"
+    }
+  },
+  {
+    "word": "ジュース",
+    "responses": [
+      {
+        "url": "https://ja.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*&maxlag=5&titles=%E3%82%B8%E3%83%A5%E3%83%BC%E3%82%B9&redirects=1&prop=pageimages%7Cpageprops%7Ccategories&cllimit=max&clshow=%21hidden&piprop=name%7Cthumbnail&pilicense=any&pilimit=max&pithumbsize=400",
+        "json": {
+          "query": {
+            "pages": [
+              {
+                "missing": true
+              }
+            ]
+          }
+        }
+      },
+      {
+        "url": "https://ja.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*&maxlag=5&generator=search&gsrsearch=%22%E3%81%98%E3%82%85%E3%83%BC%E3%81%99%22&gsrnamespace=0&gsrlimit=50&gsrprop=&prop=pageimages%7Cpageprops%7Ccategories&cllimit=max&clshow=%21hidden&piprop=name%7Cthumbnail&pilicense=any&pilimit=max&pithumbsize=400",
+        "json": {
+          "query": {
+            "pages": [
+              {
+                "pageid": 1215264,
+                "ns": 0,
+                "title": "飲料",
+                "pageimage": "Cat_poster_1.jpg",
+                "thumbnail": {
+                  "source": "https://thumb.wikimedia.org/cat.jpg"
+                },
+                "pageprops": {
+                  "defaultsort": "しゆーす"
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "url": "https://thumb.wikimedia.org/cat.jpg",
+        "bytes": [
+          1,
+          2,
+          3
+        ]
+      }
+    ],
+    "expected": {
+      "status": "image",
+      "image": "AQID",
+      "article_url": "https://ja.wikipedia.org/wiki/%E9%A3%B2%E6%96%99",
+      "images": [
+        {
+          "status": "image",
+          "image": "AQID",
+          "article_url": "https://ja.wikipedia.org/wiki/%E9%A3%B2%E6%96%99",
+          "title": "飲料"
+        }
+      ],
+      "partial": false,
+      "word": "ジュース",
+      "title": "飲料"
+    }
+  },
+  {
+    "word": "はなび",
+    "responses": [
+      {
+        "url": "https://ja.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*&maxlag=5&titles=%E3%81%AF%E3%81%AA%E3%81%B3&redirects=1&prop=pageimages%7Cpageprops%7Ccategories&cllimit=max&clshow=%21hidden&piprop=name%7Cthumbnail&pilicense=any&pilimit=max&pithumbsize=400",
+        "json": {
+          "query": {
+            "pages": [
+              {
+                "missing": true
+              }
+            ]
+          }
+        }
+      },
+      {
+        "url": "https://ja.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*&maxlag=5&titles=%E3%83%8F%E3%83%8A%E3%83%93&redirects=1&prop=pageimages%7Cpageprops%7Ccategories&cllimit=max&clshow=%21hidden&piprop=name%7Cthumbnail&pilicense=any&pilimit=max&pithumbsize=400",
+        "json": {
+          "query": {
+            "pages": [
+              {
+                "missing": true
+              }
+            ]
+          }
+        }
+      },
+      {
+        "url": "https://ja.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*&maxlag=5&generator=search&gsrsearch=%22%E3%81%AF%E3%81%AA%E3%81%B3%22&gsrnamespace=0&gsrlimit=50&gsrprop=&prop=pageimages%7Cpageprops%7Ccategories&cllimit=max&clshow=%21hidden&piprop=name%7Cthumbnail&pilicense=any&pilimit=max&pithumbsize=400",
+        "json": {
+          "query": {
+            "pages": [
+              {
+                "pageid": 201,
+                "ns": 0,
+                "title": "花火 (歌手の曲)",
+                "pageimage": "Song.jpg",
+                "thumbnail": {
+                  "source": "https://thumb.wikimedia.org/cat.jpg"
+                },
+                "pageprops": {
+                  "defaultsort": "はなひ"
+                },
+                "categories": [
+                  {
+                    "title": "Category:楽曲"
+                  }
+                ]
+              },
+              {
+                "pageid": 202,
+                "ns": 0,
+                "title": "花火 (別の曲)",
+                "pageimage": "Song2.jpg",
+                "thumbnail": {
+                  "source": "https://thumb.wikimedia.org/cat.jpg"
+                },
+                "pageprops": {
+                  "defaultsort": "はなひ"
+                },
+                "categories": [
+                  {
+                    "title": "Category:楽曲"
+                  }
+                ]
+              },
+              {
+                "pageid": 203,
+                "ns": 0,
+                "title": "線香花火 (曲)",
+                "pageimage": "Other.jpg",
+                "thumbnail": {
+                  "source": "https://thumb.wikimedia.org/cat.jpg"
+                },
+                "pageprops": {
+                  "defaultsort": "せんこうはなひ"
+                },
+                "categories": [
+                  {
+                    "title": "Category:楽曲"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "url": "https://ja.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*&maxlag=5&titles=%E8%8A%B1%E7%81%AB&redirects=1&prop=pageimages%7Cpageprops%7Ccategories&cllimit=max&clshow=%21hidden&piprop=name%7Cthumbnail&pilicense=any&pilimit=max&pithumbsize=400",
+        "json": {
+          "query": {
+            "pages": [
+              {
+                "pageid": 204,
+                "ns": 0,
+                "title": "花火",
+                "pageimage": "Fireworks.jpg",
+                "thumbnail": {
+                  "source": "https://thumb.wikimedia.org/cat.jpg"
+                },
+                "pageprops": {
+                  "defaultsort": "はなひ"
+                },
+                "categories": [
+                  {
+                    "title": "Category:玩具"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "url": "https://thumb.wikimedia.org/cat.jpg",
+        "bytes": [
+          1,
+          2,
+          3
+        ]
+      }
+    ],
+    "expected": {
+      "status": "image",
+      "image": "AQID",
+      "article_url": "https://ja.wikipedia.org/wiki/%E8%8A%B1%E7%81%AB",
+      "images": [
+        {
+          "status": "image",
+          "image": "AQID",
+          "article_url": "https://ja.wikipedia.org/wiki/%E8%8A%B1%E7%81%AB",
+          "title": "花火"
+        }
+      ],
+      "partial": false,
+      "word": "はなび",
+      "title": "花火"
+    }
+  },
+  {
+    "word": "ナイコトバ",
+    "responses": [
+      {
+        "url": "https://ja.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*&maxlag=5&titles=%E3%83%8A%E3%82%A4%E3%82%B3%E3%83%88%E3%83%90&redirects=1&prop=pageimages%7Cpageprops%7Ccategories&cllimit=max&clshow=%21hidden&piprop=name%7Cthumbnail&pilicense=any&pilimit=max&pithumbsize=400",
+        "json": {
+          "query": {
+            "pages": [
+              {
+                "missing": true
+              }
+            ]
+          }
+        }
+      },
+      {
+        "url": "https://ja.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*&maxlag=5&generator=search&gsrsearch=%22%E3%81%AA%E3%81%84%E3%81%93%E3%81%A8%E3%81%B0%22&gsrnamespace=0&gsrlimit=50&gsrprop=&prop=pageimages%7Cpageprops%7Ccategories&cllimit=max&clshow=%21hidden&piprop=name%7Cthumbnail&pilicense=any&pilimit=max&pithumbsize=400",
+        "json": {
+          "batchcomplete": true
+        }
+      }
+    ],
+    "expected": {
+      "status": "not_found",
+      "word": "ナイコトバ"
+    }
+  }
+]
