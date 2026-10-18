@@ -61,6 +61,7 @@ func _ready() -> void:
 	margin.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	for edge in ["left", "right", "top", "bottom"]:
 		margin.add_theme_constant_override("margin_" + edge, 16)
+	margin.add_theme_constant_override("margin_bottom", 16 + UI.BOTTOM_INSET)
 	add_child(margin)
 	var layout = VBoxContainer.new()
 	layout.add_theme_constant_override("separation", 10)
@@ -465,6 +466,7 @@ func _build_image_modal() -> void:
 	panel.anchor_top = 0.05
 	panel.anchor_right = 0.94
 	panel.anchor_bottom = 0.95
+	panel.offset_bottom = -UI.BOTTOM_INSET
 	panel.mouse_filter = Control.MOUSE_FILTER_STOP
 	panel.add_theme_stylebox_override("panel", UI.style(Color("f5f2e8")))
 	image_modal.add_child(panel)

@@ -1,5 +1,8 @@
 extends RefCounted
 
+# Extra space above tablet system gestures, in logical viewport pixels.
+const BOTTOM_INSET = 48
+
 const INK = Color("283c3c")
 const GREEN = Color("267565")
 
@@ -57,6 +60,7 @@ static func column(root: Control) -> VBoxContainer:
 	margin.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	for edge in ["left", "right", "top", "bottom"]:
 		margin.add_theme_constant_override("margin_" + edge, 24)
+	margin.add_theme_constant_override("margin_bottom", 24 + BOTTOM_INSET)
 	root.add_child(margin)
 	var column = VBoxContainer.new()
 	column.add_theme_constant_override("separation", 16)

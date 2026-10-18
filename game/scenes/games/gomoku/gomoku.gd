@@ -16,15 +16,16 @@ var hint_enabled: Dictionary = {1: true, 2: true}
 func _layout() -> void:
 	if board == null: return
 	var landscape = size.x > size.y
+	var available_height = size.y - UI.BOTTOM_INSET
 	for child in panel.get_children():
 		if child is Button: child.custom_minimum_size.y = 128 if landscape else 96
 	var panel_height = panel.get_combined_minimum_size().y
-	var side = minf(size.y - 8, size.x - 260) if landscape else minf(size.x - 8, size.y - panel_height - 20)
+	var side = minf(available_height - 8, size.x - 260) if landscape else minf(size.x - 8, available_height - panel_height - 20)
 	side = maxf(100, side)
-	board.position = Vector2(4, (size.y - side) / 2) if landscape else Vector2((size.x - side) / 2, 4)
+	board.position = Vector2(4, (available_height - side) / 2) if landscape else Vector2((size.x - side) / 2, 4)
 	board.size = Vector2.ONE * side
 	panel_scroll.position = Vector2(side + 16, 12) if landscape else Vector2(8, side + 12)
-	panel_scroll.size = Vector2(size.x - side - 24, size.y - 24) if landscape else Vector2(size.x - 16, size.y - side - 20)
+	panel_scroll.size = Vector2(size.x - side - 24, available_height - 24) if landscape else Vector2(size.x - 16, available_height - side - 20)
 	for child in panel.get_children():
 		if child is Button: child.custom_minimum_size.y = 128 if landscape else 96
 

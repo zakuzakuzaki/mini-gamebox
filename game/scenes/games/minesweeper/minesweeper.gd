@@ -44,6 +44,7 @@ func _ready() -> void:
 	add_child(sound)
 	selection = ScrollContainer.new()
 	selection.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	selection.offset_bottom = -UI.BOTTOM_INSET
 	selection.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
 	add_child(selection)
 	var menu = VBoxContainer.new()
@@ -159,7 +160,7 @@ func _mode_button(parent: Node, group: ButtonGroup, is_flag: bool) -> Button:
 func _layout() -> void:
 	if play == null: return
 	play.position = Vector2(12, 12)
-	play.size = size - Vector2(24, 24)
+	play.size = size - Vector2(24, 24 + UI.BOTTOM_INSET)
 	var landscape = size.x > size.y
 	if landscape:
 		var panel_width = clampf(play.size.x * 0.30, 280, 360)

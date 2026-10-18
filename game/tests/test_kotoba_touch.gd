@@ -164,7 +164,7 @@ func _check_fixed_keyboard(scene: Control) -> void:
 		check(scene.erase_button.get_global_rect().position.x >= scene.keyboard.get_global_rect().end.x, "Editing keys sit to the right of kana")
 		check(scene.confirm_button.get_global_rect().position.y > scene.clear_button.get_global_rect().end.y, "Enter sits at bottom right")
 		var dock_rect: Rect2 = scene.keyboard_dock.get_global_rect()
-		check(absf(dock_rect.end.y - (scene.size.y - 16)) < 1, "Keyboard is anchored to bottom")
+		check(absf(dock_rect.end.y - (scene.size.y - 64)) < 1, "Keyboard leaves tablet bottom clearance")
 		check(scene.content_panel.size.y > 100, "Upper content retains usable space")
 		for status in ["loading", "image", "not_found", "network", "limit", "clear", "mode"]:
 			if status == "clear": scene._clear()

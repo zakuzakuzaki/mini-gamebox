@@ -94,14 +94,15 @@ func _ready() -> void:
 func _layout() -> void:
 	if board == null: return
 	var landscape = size.x > size.y
+	var available_height = size.y - UI.BOTTOM_INSET
 	for child in panel.get_children():
 		if child is Button: child.custom_minimum_size.y = 96
-	var side = minf(size.y - 24, size.x - 300) if landscape else minf(size.x - 24, size.y - panel.get_combined_minimum_size().y - 36)
+	var side = minf(available_height - 24, size.x - 300) if landscape else minf(size.x - 24, available_height - panel.get_combined_minimum_size().y - 36)
 	side = maxf(120, side)
-	board.position = Vector2(12, (size.y - side) / 2) if landscape else Vector2((size.x - side) / 2, 12)
+	board.position = Vector2(12, (available_height - side) / 2) if landscape else Vector2((size.x - side) / 2, 12)
 	board.size = Vector2.ONE * side
 	panel_scroll.position = Vector2(side + 24, 12) if landscape else Vector2(12, side + 24)
-	panel_scroll.size = Vector2(size.x - side - 36, size.y - 24) if landscape else Vector2(size.x - 24, size.y - side - 36)
+	panel_scroll.size = Vector2(size.x - side - 36, available_height - 24) if landscape else Vector2(size.x - 24, available_height - side - 36)
 
 func _place(position: Vector2i) -> void:
 	if state.place(position): _refresh()

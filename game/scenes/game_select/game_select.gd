@@ -9,6 +9,7 @@ func _ready() -> void:
 	UI.setup(self)
 	var center = CenterContainer.new()
 	center.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	center.offset_bottom = -UI.BOTTOM_INSET
 	add_child(center)
 	column = VBoxContainer.new()
 	column.add_theme_constant_override("separation", 16)
