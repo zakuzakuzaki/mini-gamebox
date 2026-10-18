@@ -143,7 +143,7 @@ func _check_fixed_keyboard(scene: Control) -> void:
 		check(scene.confirm_button.get_global_rect().position.y > scene.clear_button.get_global_rect().end.y, "Enter sits at bottom right")
 		var dock_rect: Rect2 = scene.keyboard_dock.get_global_rect()
 		check(absf(dock_rect.end.y - (scene.size.y - 16)) < 1, "Keyboard is anchored to bottom")
-		check(scene.content_scroll.size.y > 100, "Upper content retains usable scroll space")
+		check(scene.content_panel.size.y > 100, "Upper content retains usable space")
 		for status in ["loading", "image", "not_found", "network", "limit", "clear", "mode"]:
 			if status == "clear": scene._clear()
 			elif status == "mode": scene._set_mode(not scene.hiragana_mode)
@@ -161,4 +161,5 @@ func _check_fixed_keyboard(scene: Control) -> void:
 			for i in fixed_keys.size():
 				check(fixed_keys[i].get_global_rect().is_equal_approx(positions[i]), "Every key stays fixed: " + status)
 			check(scene.keyboard_dock.get_global_rect().is_equal_approx(dock_rect), "Modifier keys stay fixed: " + status)
-			check(scene.content_scroll.get_global_rect().end.y <= dock_rect.position.y, "Content cannot overlap keyboard")
+			check(scene.content_panel.get_global_rect().end.y <= dock_rect.position.y, "Content cannot overlap keyboard")
+			check(scene.content_column.get_global_rect().end.y <= scene.content_panel.get_global_rect().end.y + 1, "Upper content fits without vertical scrolling: " + status)

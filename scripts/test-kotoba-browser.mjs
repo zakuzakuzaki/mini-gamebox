@@ -5,10 +5,11 @@ import assert from 'node:assert/strict';
 const source = await readFile(new URL('../game/scenes/games/kotoba_touch/browser.js', import.meta.url), 'utf8');
 const cat = {pageid: 1215264, ns: 0, title: 'ネコ', pageimage: 'Cat_poster_1.jpg', thumbnail: {source: 'https://thumb.wikimedia.org/cat.jpg'}};
 function environment(handler) {
-  const requests = [], speech = [], timers = new Map();
+  const requests = [], speech = [], timers = new Map(), listeners = new Map();
   let now = 10000, timerId = 0;
   const context = vm.createContext({URL, URLSearchParams, AbortController, Uint8Array,
     Date: {now: () => now}, btoa,
+    addEventListener: (type, callback) => listeners.set(type, callback),
     setTimeout: fn => {timers.set(++timerId, fn); return timerId;}, clearTimeout: id => timers.delete(id),
     SpeechSynthesisUtterance: function(text) { this.text = text; },
     speechSynthesis: {cancel: () => speech.push('cancel'), getVoices: () => [{lang: 'ja-JP'}], speak: u => speech.push(u)},
@@ -19,7 +20,7 @@ function environment(handler) {
     },
   });
   vm.runInContext(source, context);
-  return {api: context.kotobaTouch, requests, speech, timers, advance: () => now += 2000, context};
+  return {api: context.kotobaTouch, requests, speech, timers, listeners, advance: () => now += 2000, context};
 }
 const response = query => ({ok: true, json: async () => ({query})});
 const settle = async env => {
@@ -37,6 +38,29 @@ assert.deepEqual(env.speech.filter(x => x !== 'cancel').map(x => [x.text, x.lang
 assert.equal(env.speech.filter(x => x === 'cancel').length, 3);
 env.context.speechSynthesis = null;
 assert.equal(env.api.speak('ねこ'), false);
+
+// Buffered Godot input must produce speech inside the browser gesture, not
+// on the next animation frame. Cover touch, mouse, keyboard and scene cleanup.
+env = environment(async () => response({pages: []}));
+let inGesture = false, count = 0;
+env.context.speechSynthesis.speak = utterance => {
+  assert.ok(inGesture, 'Speech must run synchronously inside the trusted event');
+  assert.equal(utterance.text, 'カ');
+  count++;
+};
+env.api.setInputCallback(() => env.api.speak('カ'));
+for (const type of ['mousedown', 'mouseup', 'touchstart', 'touchend', 'keydown', 'keyup']) {
+  env.listeners.get(type)({isTrusted: false});
+  inGesture = true;
+  env.listeners.get(type)({isTrusted: true});
+  inGesture = false;
+}
+assert.equal(count, 6);
+env.api.setInputCallback(null);
+env.listeners.get('touchend')({isTrusted: true});
+assert.equal(count, 6, 'Leaving the scene releases the Godot callback');
+vm.runInContext(source, env.context);
+assert.equal(env.listeners.size, 6, 'Reopening the game does not duplicate listeners');
 
 // Exact title, kana normalization, missing images, cache and throttling.
 env = environment(async url => response({pages: [{...cat, thumbnail: null}]}));

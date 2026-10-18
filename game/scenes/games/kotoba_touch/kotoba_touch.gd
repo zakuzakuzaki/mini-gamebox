@@ -31,11 +31,13 @@ var heading: BoxContainer
 var input_row: BoxContainer
 var image_box: VBoxContainer
 var keyboard_dock: HBoxContainer
-var content_scroll: ScrollContainer
+var content_panel: Control
+var content_column: VBoxContainer
 var keyboard: GridContainer
 var keys: Array[Button] = []
 var modes: Array[Button] = []
 var bridge: JavaScriptObject
+var browser_input_callback: JavaScriptObject
 var animation: Tween
 
 func _ready() -> void:
@@ -44,6 +46,8 @@ func _ready() -> void:
 	if OS.has_feature("web"):
 		JavaScriptBridge.eval(FileAccess.get_file_as_string("res://scenes/games/kotoba_touch/browser.js"), true)
 		bridge = JavaScriptBridge.get_interface("kotobaTouch")
+		browser_input_callback = JavaScriptBridge.create_callback(_flush_browser_input)
+		if bridge: bridge.setInputCallback(browser_input_callback)
 	var margin = MarginContainer.new()
 	margin.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	for edge in ["left", "right", "top", "bottom"]:
@@ -52,17 +56,17 @@ func _ready() -> void:
 	var layout = VBoxContainer.new()
 	layout.add_theme_constant_override("separation", 10)
 	margin.add_child(layout)
-	# Only the upper content scrolls. The keyboard's height and bottom edge never
-	# depend on result text, image dimensions, credits, or loading/error states.
-	content_scroll = ScrollContainer.new()
-	content_scroll.size_flags_vertical = SIZE_EXPAND_FILL
-	content_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
-	content_scroll.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_SHOW_ALWAYS
-	layout.add_child(content_scroll)
+	# Keep the upper area fixed; fit its contents into the space above the keys.
+	content_panel = Control.new()
+	content_panel.size_flags_vertical = SIZE_EXPAND_FILL
+	content_panel.clip_contents = true
+	layout.add_child(content_panel)
 	var column = VBoxContainer.new()
-	column.size_flags_horizontal = SIZE_EXPAND_FILL
+	content_column = column
 	column.add_theme_constant_override("separation", 10)
-	content_scroll.add_child(column)
+	content_panel.add_child(column)
+	content_panel.resized.connect(_fit_upper_content)
+	column.minimum_size_changed.connect(_fit_upper_content)
 	input_limit_label = UI.label("これいじょう にゅうりょくできません", 21)
 	input_limit_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 	input_limit_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
@@ -206,6 +210,17 @@ func _layout() -> void:
 	heading.vertical = size.x < 1000
 	input_row.vertical = size.x < 1000
 
+func _fit_upper_content() -> void:
+	if content_column == null or content_panel.size.y <= 0: return
+	# Measure at the available width first, so a previous scale never feeds back
+	# into the next layout. Horizontal scrolling remains inside the word/gallery.
+	content_column.size.x = content_panel.size.x
+	var minimum = content_column.get_combined_minimum_size()
+	var factor = minf(1.0, content_panel.size.y / maxf(minimum.y, 1.0))
+	factor = minf(factor, content_panel.size.x / maxf(minimum.x, 1.0))
+	content_column.scale = Vector2.ONE * factor
+	content_column.size = Vector2(content_panel.size.x / factor, minimum.y)
+
 func _set_mode(mode: bool) -> void:
 	hiragana_mode = mode
 	for button in keys:
@@ -218,6 +233,9 @@ func _speak(text: String) -> void:
 	spoken.append(text)
 	if spoken.size() > 32: spoken.pop_front()
 	if bridge: bridge.speak(text)
+
+func _flush_browser_input(_arguments: Array) -> void:
+	Input.flush_buffered_events()
 
 func _append(character: String) -> void:
 	if character.strip_edges().is_empty(): return
@@ -341,7 +359,9 @@ func _back() -> void:
 	get_tree().change_scene_to_file.call_deferred("res://scenes/game_select/game_select.tscn")
 
 func _exit_tree() -> void:
-	if bridge: bridge.cancel()
+	if bridge:
+		bridge.setInputCallback(null)
+		bridge.cancel()
 
 func _build_image_modal() -> void:
 	image_modal = Control.new()
