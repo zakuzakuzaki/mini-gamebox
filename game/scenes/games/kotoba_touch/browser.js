@@ -5,6 +5,15 @@
   const PAGE_PROPERTIES = {prop: 'pageimages|pageprops|categories', cllimit: 'max', clshow: '!hidden',
     piprop: 'name|thumbnail', pilicense: 'any', pilimit: 'max', pithumbsize: '400'};
   const cache = new Map();
+  let flushInput = null;
+  // Run after Godot's canvas listeners have queued the event, but before the
+  // browser leaves the trusted gesture. A later animation frame loses this
+  // context on Safari, so speech from a Godot button can otherwise be blocked.
+  for (const type of ['mousedown', 'mouseup', 'touchstart', 'touchend', 'keydown', 'keyup']) {
+    globalThis.addEventListener?.(type, event => {
+      if (event.isTrusted) flushInput?.();
+    });
+  }
   let serial = 0, controller, result = null, lastStart = -Infinity;
   const normalize = text => text.replace(/[ぁ-ゖ]/g, c => String.fromCharCode(c.charCodeAt(0) + 96));
   // Japanese DEFAULTSORT commonly removes voicing and expands small kana.
@@ -151,6 +160,7 @@
     return {status: 'image', image: btoa(binary), article_url: `https://ja.wikipedia.org/wiki/${encodeURIComponent(page.title)}`};
   }
   globalThis.kotobaTouch = {
+    setInputCallback(callback) { flushInput = callback; },
     speak(text) {
       try {
         if (!globalThis.speechSynthesis || !globalThis.SpeechSynthesisUtterance) return false;
