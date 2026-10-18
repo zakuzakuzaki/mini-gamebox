@@ -27,3 +27,44 @@ vm.runInContext(source, env.context);
 assert.equal(env.listeners.size, 6, 'Reopening the game does not duplicate listeners');
 
 console.log('Kotoba browser input checks passed');
+
+// Voice enumeration must not prevent a Japanese utterance from being submitted.
+let voices = [], utterances = [], errors = [];
+context.SpeechSynthesisUtterance = class {
+  constructor(text) { this.text = text; this.voice = null; }
+};
+context.speechSynthesis = {
+  getVoices: () => voices,
+  speak: utterance => utterances.push(utterance),
+  cancel: () => utterances.at(-1)?.onerror({error: 'interrupted'}),
+};
+env.api.setSpeechErrorCallback((code, text) => errors.push({code, text}));
+env.api.speak('カ');
+assert.equal(utterances.length, 1);
+assert.equal(utterances[0].lang, 'ja-JP');
+assert.equal(utterances[0].voice, null);
+assert.equal(utterances[0].rate, 0.85);
+voices = [{lang: 'en-US'}, {lang: 'ja_JP'}];
+env.api.speak('ネコ');
+assert.equal(utterances[1].voice, voices[1], 'Re-query voices after delayed loading');
+assert.deepEqual(errors, [], 'Replacing speech ignores cancellation');
+utterances[0].onerror({error: 'synthesis-failed'});
+assert.deepEqual(errors, [], 'Stale errors cannot affect a newer utterance');
+utterances[1].onerror({error: 'language-unavailable'});
+assert.deepEqual(errors.pop(), {code: 'language-unavailable', text: 'ネコ'});
+voices = [{lang: 'en-US'}];
+env.api.speak('イヌ');
+assert.equal(utterances[2].voice, null, 'Do not force an unrelated language');
+env.api.stopSpeech();
+utterances[2].onerror({error: 'synthesis-failed'});
+assert.deepEqual(errors, []);
+context.speechSynthesis.speak = () => { throw new Error('failed'); };
+env.api.speak('ウシ');
+assert.equal(errors.pop().code, 'Error');
+delete context.speechSynthesis;
+env.api.speak('トリ');
+assert.equal(errors.pop().code, 'unsupported');
+env.api.setSpeechErrorCallback(null);
+env.api.speak('トリ');
+assert.deepEqual(errors, [], 'Leaving the scene releases the error callback');
+console.log('Kotoba browser speech checks passed');

@@ -39,6 +39,7 @@ var keyboard: GridContainer
 var keys: Array[Button] = []
 var modes: Array[Button] = []
 var bridge: JavaScriptObject
+var browser_speech_error_callback: JavaScriptObject
 var browser_input_callback: JavaScriptObject
 var animation: Tween
 var photos = WikipediaImages.new()
@@ -52,7 +53,10 @@ func _ready() -> void:
 		JavaScriptBridge.eval(FileAccess.get_file_as_string("res://scenes/games/kotoba_touch/browser.js"), true)
 		bridge = JavaScriptBridge.get_interface("kotobaTouch")
 		browser_input_callback = JavaScriptBridge.create_callback(_flush_browser_input)
-		if bridge: bridge.setInputCallback(browser_input_callback)
+		if bridge:
+			bridge.setInputCallback(browser_input_callback)
+			browser_speech_error_callback = JavaScriptBridge.create_callback(_browser_speech_error)
+			bridge.setSpeechErrorCallback(browser_speech_error_callback)
 	var margin = MarginContainer.new()
 	margin.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	for edge in ["left", "right", "top", "bottom"]:
@@ -249,6 +253,9 @@ func _speak(text: String) -> void:
 	if spoken.size() > 32: spoken.pop_front()
 	# Headless tests have no audio backend.
 	if DisplayServer.get_name() == "headless": return
+	if OS.has_feature("web") and bridge:
+		bridge.speak(text)
+		return
 	if not DisplayServer.has_feature(DisplayServer.FEATURE_TEXT_TO_SPEECH):
 		_tts_error("unsupported", text)
 		return
@@ -260,11 +267,17 @@ func _speak(text: String) -> void:
 		return
 	DisplayServer.tts_speak(text, voices[0], 100, 1.0, 0.85, 0, true)
 
+func _browser_speech_error(arguments: Array) -> void:
+	_tts_error(str(arguments[0]), str(arguments[1]))
+
 func _tts_error(code: String, text: String) -> void:
 	get_node("/root/DebugPopup").show_error("TTS", "読み上げに失敗しました",
 		JSON.stringify({"code": code, "text": text, "lang": "ja", "platform": OS.get_name()}))
 
 func _stop_speech() -> void:
+	if bridge:
+		bridge.stopSpeech()
+		return
 	if DisplayServer.get_name() != "headless" and DisplayServer.has_feature(DisplayServer.FEATURE_TEXT_TO_SPEECH):
 		DisplayServer.tts_stop()
 
@@ -431,6 +444,7 @@ func _exit_tree() -> void:
 	_stop_speech()
 	if bridge:
 		bridge.setInputCallback(null)
+		bridge.setSpeechErrorCallback(null)
 	photos.cancel()
 
 func _build_image_modal() -> void:
